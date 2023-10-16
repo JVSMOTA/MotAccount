@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import Logo from '../../components/Logo';
-import LoginForm from '../../components/LoginForm';
+import LoginFormAdm from '../../components/LoginFormAdm';
 import styles from './styles';
 
 export default function SingIn() {
@@ -10,7 +10,7 @@ export default function SingIn() {
       colors={['#FF9B3F', '#DB5605']}
     >
       <Logo/>
-      <LoginForm/>
+      <LoginFormAdm/>
     </LinearGradient>
   );
 }
