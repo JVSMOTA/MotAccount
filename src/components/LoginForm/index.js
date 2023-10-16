@@ -11,11 +11,15 @@ export default function LoginForm() {
     <Animatable.View delay={500} animation='fadeInUp' style={styles.Container}>
       <Text style={styles.Title}>Entrar no MotAccount</Text>
       
-      <TouchableOpacity style={styles.ContainerButton}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Matriz')}
+        style={styles.ContainerButton}>
         <Text style={styles.TitleButton}>Loja Matriz</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.ContainerButton}>
+      <TouchableOpacity 
+        onPress={() => navigation.navigate('Filial')}
+        style={styles.ContainerButton}>
         <Text style={styles.TitleButton}>Loja Filial</Text>
       </TouchableOpacity>
 
