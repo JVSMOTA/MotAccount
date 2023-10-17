@@ -12,7 +12,7 @@ import * as Animatable from 'react-native-animatable';
 import DateTime from '../../components/DateTime';
 import VisorAmount from '../../components/VisorAmount';
 
-export default function Filial() {
+export default function Matriz() {
   const navigation = useNavigation();
 
   return (
@@ -23,21 +23,21 @@ export default function Filial() {
         <Animatable.View
           animation='fadeInDown'
           style={styles.MenuTop}>
-          <Text style={styles.Title}>Sapataria Filial</Text>
+          <Text style={styles.Title}>Acompanhamento Geral</Text>
           <DateTime/>
-          <VisorAmount title='Apurado do dia' placeholder='00,00'/>
-          <Button placeholder='Alterar'></Button>
+          <VisorAmount title='Apurado do dia na Matriz' placeholder='00,00'/>
+          <VisorAmount title='Apurado do dia na Filial' placeholder='00,00'/>
         </Animatable.View>
         <Animatable.View
           style={styles.Menu}>
           <ButtonAmmount
-            onPress='FilialApurados'
+            onPress={() => navigation.navigate('ApuradosMatriz')}
           />
           <ButtonSchedules
-            onPress='FilialAgendamentos'
+            onPress={() => navigation.navigate('AgendamentosMatriz')}
           />
           <ButtonExpenses
-            onPress='FilialDespesas'
+            onPress={() => navigation.navigate('DespesasMatriz')}
           />
         </Animatable.View>
         <ButtonLogOut placeholder='Sair'></ButtonLogOut>

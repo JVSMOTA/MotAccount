@@ -3,7 +3,7 @@ import styles from './styles';
 
 import { useNavigation } from '@react-navigation/native';
 
-export default function Button({ placeholder }) {
+export default function ButtonLogOut({ placeholder }) {
   const navigation = useNavigation();
 
   return (

@@ -10,6 +10,7 @@ import ButtonExpenses from '../../components/ButtonExpenses';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import DateTime from '../../components/DateTime';
+import VisorAmount from '../../components/VisorAmount';
 
 export default function Matriz() {
   const navigation = useNavigation();
@@ -24,19 +25,20 @@ export default function Matriz() {
           style={styles.MenuTop}>
           <Text style={styles.Title}>Sapataria Matriz</Text>
           <DateTime/>
-          <InputAmount/>
+          <VisorAmount title='Apurado do dia' placeholder='00,00'/>
           <Button placeholder='Alterar'></Button>
         </Animatable.View>
         <Animatable.View
           style={styles.Menu}>
+          
           <ButtonAmmount
-            onPress={() => navigation.navigate('ApuradosMatriz')}
+            onPress='MatrizApurados'
           />
           <ButtonSchedules
-            onPress={() => navigation.navigate('AgendamentosMatriz')}
+            onPress='MatrizAgendamentos'
           />
           <ButtonExpenses
-            onPress={() => navigation.navigate('DespesasMatriz')}
+            onPress='MatrizDespesas'
           />
         </Animatable.View>
         <ButtonLogOut placeholder='Sair'></ButtonLogOut>

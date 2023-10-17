@@ -13,7 +13,10 @@ export default function LoginFormAdm() {
     <Animatable.View delay={500} animation='fadeInUp' style={styles.Container}>
       <Text style={styles.Title}>Digite a sua senha</Text>
       <InputPassword/>
-      <Button placeholder='Entrar'></Button>
+      <Button 
+        onPress='MenuAdm'
+        placeholder='Entrar'
+      />
       <TouchableOpacity 
         style={styles.ContainerToLoginNotAdm}
         onPress={() => navigation.navigate('SingIn')}

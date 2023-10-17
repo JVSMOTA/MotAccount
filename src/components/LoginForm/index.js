@@ -1,5 +1,6 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
+import Button from '../Button';
 
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
@@ -11,17 +12,15 @@ export default function LoginForm() {
     <Animatable.View delay={500} animation='fadeInUp' style={styles.Container}>
       <Text style={styles.Title}>Entrar no MotAccount</Text>
       
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Matriz')}
-        style={styles.ContainerButton}>
-        <Text style={styles.TitleButton}>Loja Matriz</Text>
-      </TouchableOpacity>
+      <Button   
+        onPress='Matriz'
+        placeholder='Loja Matriz'
+      />
 
-      <TouchableOpacity 
-        onPress={() => navigation.navigate('Filial')}
-        style={styles.ContainerButton}>
-        <Text style={styles.TitleButton}>Loja Filial</Text>
-      </TouchableOpacity>
+      <Button   
+        onPress='Filial'
+        placeholder='Loja Filial'
+      />
 
       <TouchableOpacity 
         style={styles.ContainerToLoginAdm}
@@ -29,6 +28,7 @@ export default function LoginForm() {
         >
         <Text style={styles.TitleToLoginAdm}>É um Administrador?</Text>
       </TouchableOpacity>
+      
     </Animatable.View>
   );
 }
