@@ -33,17 +33,17 @@ export default function Routes(){
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="Matriz/Apurados"
+                name="MatrizApurados"
                 component={MatrizApurados}
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="Matriz/Agendamentos"
+                name="MatrizAgendamentos"
                 component={MatrizAgendamentos}
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="Matriz/Despesas"
+                name="MatrizDespesas"
                 component={MatrizDespesas}
                 options={{ headerShown: false }}
             />
@@ -53,22 +53,20 @@ export default function Routes(){
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="Filial/Apurados"
+                name="FilialApurados"
                 component={FilialApurados}
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="Filial/Agendamentos"
+                name="FilialAgendamentos"
                 component={FilialAgendamentos}
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="Filial/Despesas"
+                name="FilialDespesas"
                 component={FilialDespesas}
                 options={{ headerShown: false }}
             />
-
-
             <Stack.Screen
                 name="MenuAdm"
                 component={MenuAdm}

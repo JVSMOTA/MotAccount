@@ -31,13 +31,13 @@ export default function Filial() {
         <Animatable.View
           style={styles.Menu}>
           <ButtonAmmount
-            onPress={() => navigation.navigate('ApuradosFilial')}
+            onPress='FilialApurados'
           />
           <ButtonSchedules
-            onPress={() => navigation.navigate('AgendamentosFilial')}
+            onPress='FilialAgendamentos'
           />
           <ButtonExpenses
-            onPress={() => navigation.navigate('DespesasFilial')}
+            onPress='FilialDespesas'
           />
         </Animatable.View>
         <ButtonLogOut placeholder='Sair'></ButtonLogOut>

@@ -30,14 +30,15 @@ export default function Matriz() {
         </Animatable.View>
         <Animatable.View
           style={styles.Menu}>
+          
           <ButtonAmmount
-            onPress={() => navigation.navigate('ApuradosMatriz')}
+            onPress='MatrizApurados'
           />
           <ButtonSchedules
-            onPress={() => navigation.navigate('AgendamentosMatriz')}
+            onPress='MatrizAgendamentos'
           />
           <ButtonExpenses
-            onPress={() => navigation.navigate('DespesasMatriz')}
+            onPress='MatrizDespesas'
           />
         </Animatable.View>
         <ButtonLogOut placeholder='Sair'></ButtonLogOut>
