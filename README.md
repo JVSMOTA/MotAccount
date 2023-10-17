@@ -2,11 +2,11 @@
 
 ## 📝 Descrição
 
-MotAccounting é um aplicativo de controle financeiro projetado para atender às necessidades da renomada loja de calçados "Sapatarias Mota". Esta aplicação foi desenvolvida para simplificar e aprimorar a gestão das finanças da loja, oferecendo recursos abrangentes para o registro de apurados diários, agendamento de pagamentos e o controle de despesas.
+MotAccount é um aplicativo de controle financeiro projetado para atender às necessidades da renomada loja de calçados "Sapatarias Mota". Esta aplicação foi desenvolvida para simplificar e aprimorar a gestão das finanças da loja, oferecendo recursos abrangentes para o registro de apurados diários, agendamento de pagamentos e o controle de despesas.
 
 ## 🎯 Objetivo
 
-O objetivo principal do MotAccounting é facilitar a administração das finanças da Sapatarias Mota, proporcionando uma ferramenta intuitiva e eficaz para o gerenciamento financeiro. Este projeto é parte de um esforço contínuo para melhorar a eficiência operacional e garantir o sucesso contínuo da loja.
+O objetivo principal do MotAccount é facilitar a administração das finanças da Sapatarias Mota, proporcionando uma ferramenta intuitiva e eficaz para o gerenciamento financeiro. Este projeto é parte de um esforço contínuo para melhorar a eficiência operacional e garantir o sucesso contínuo da loja.
 
 ## 🏹 User Stories
 
