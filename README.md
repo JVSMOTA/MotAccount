@@ -1,4 +1,4 @@
-# MotAccounting
+# MotAccount
 
 ## 📝 Descrição
 
