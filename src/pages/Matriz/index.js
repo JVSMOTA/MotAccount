@@ -9,6 +9,7 @@ import ButtonExpenses from '../../components/ButtonExpenses';
 
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
+import DateTime from '../../components/DateTime';
 
 export default function Matriz() {
   const navigation = useNavigation();
@@ -22,6 +23,7 @@ export default function Matriz() {
           animation='fadeInDown'
           style={styles.MenuTop}>
           <Text style={styles.Title}>Sapataria Matriz</Text>
+          <DateTime/>
           <InputAmount/>
           <Button placeholder='Alterar'></Button>
         </Animatable.View>
