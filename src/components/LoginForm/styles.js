@@ -10,14 +10,6 @@ const styles = StyleSheet.create({
         borderRadius:32,
         gap:26
     },
-    ContainerButton: {
-        width:'auto',
-        height:46,
-        backgroundColor:'#DB5807',
-        alignItems:'center',
-        padding:12,
-        borderRadius:23
-    },
     ContainerToLoginAdm: {
         width:'auto'
     },
@@ -26,11 +18,6 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'#DB5807',
         alignSelf:'center', /*oi amor eu te amo mas queria saber pq esse botao n faz nada?*/
-    },
-    TitleButton: {
-        fontSize:16,
-        fontWeight:'bold',
-        color:'#FFFFFF'
     },
     TitleToLoginAdm: {
         alignSelf:'center',

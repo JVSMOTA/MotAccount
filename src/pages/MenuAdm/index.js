@@ -23,10 +23,10 @@ export default function Matriz() {
         <Animatable.View
           animation='fadeInDown'
           style={styles.MenuTop}>
-          <Text style={styles.Title}>Sapataria Matriz</Text>
+          <Text style={styles.Title}>Acompanhamento Geral</Text>
           <DateTime/>
-          <VisorAmount title='Apurado do dia' placeholder='00,00'/>
-          <Button placeholder='Alterar'></Button>
+          <VisorAmount title='Apurado do dia na Matriz' placeholder='00,00'/>
+          <VisorAmount title='Apurado do dia na Filial' placeholder='00,00'/>
         </Animatable.View>
         <Animatable.View
           style={styles.Menu}>

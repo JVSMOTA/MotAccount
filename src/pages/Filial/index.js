@@ -10,6 +10,7 @@ import ButtonExpenses from '../../components/ButtonExpenses';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import DateTime from '../../components/DateTime';
+import VisorAmount from '../../components/VisorAmount';
 
 export default function Filial() {
   const navigation = useNavigation();
@@ -24,7 +25,7 @@ export default function Filial() {
           style={styles.MenuTop}>
           <Text style={styles.Title}>Sapataria Filial</Text>
           <DateTime/>
-          <InputAmount/>
+          <VisorAmount title='Apurado do dia' placeholder='00,00'/>
           <Button placeholder='Alterar'></Button>
         </Animatable.View>
         <Animatable.View
