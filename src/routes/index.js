@@ -3,7 +3,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SingIn from '../pages/SingIn'
 import SingInAdm from '../pages/SingInAdm'
 import Filial from '../pages/Filial'
+import FilialApurados from '../pages/FilialApurados'
+import FilialAgendamentos from '../pages/FilialAgendamentos'
+import FilialDespesas from '../pages/FilialDespesas'
 import Matriz from '../pages/Matriz'
+import MatrizApurados from '../pages/MatrizApurados'
+import MatrizAgendamentos from '../pages/MatrizAgendamentos'
+import MatrizDespesas from '../pages/MatrizDespesas'
 import MenuAdm from '../pages/MenuAdm'
 
 const Stack = createNativeStackNavigator();
@@ -27,10 +33,42 @@ export default function Routes(){
                 options={{ headerShown: false }}
             />
             <Stack.Screen
+                name="Matriz/Apurados"
+                component={MatrizApurados}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Matriz/Agendamentos"
+                component={MatrizAgendamentos}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Matriz/Despesas"
+                component={MatrizDespesas}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
                 name="Filial"
                 component={Filial}
                 options={{ headerShown: false }}
             />
+            <Stack.Screen
+                name="Filial/Apurados"
+                component={FilialApurados}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Filial/Agendamentos"
+                component={FilialAgendamentos}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Filial/Despesas"
+                component={FilialDespesas}
+                options={{ headerShown: false }}
+            />
+
+
             <Stack.Screen
                 name="MenuAdm"
                 component={MenuAdm}
