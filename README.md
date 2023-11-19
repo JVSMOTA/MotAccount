@@ -1,5 +1,9 @@
 # MotAccount
 
+## 📱 Prototipagem
+
+![Design da MotAccount](src/assets/Design.png)
+
 ## 📝 Descrição
 
 MotAccount é um aplicativo de controle financeiro projetado para atender às necessidades da renomada loja de calçados "Sapatarias Mota". Esta aplicação foi desenvolvida para simplificar e aprimorar a gestão das finanças da loja, oferecendo recursos abrangentes para o registro de apurados diários, agendamento de pagamentos e o controle de despesas.
