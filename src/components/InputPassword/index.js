@@ -6,7 +6,9 @@ export default function InputPassword() {
     <View style={styles.Container}>
       <Text style={styles.Title}>Senha</Text>
       <TextInput
-        placeholder='Digite sua Senha'
+        placeholder='Digite seu PIN'
+        keyboardType='numeric'
+        secureTextEntry={true}
         style={styles.Input}
       />
     </View>
