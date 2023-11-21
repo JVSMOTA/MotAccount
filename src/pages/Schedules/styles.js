@@ -19,8 +19,7 @@ const styles = StyleSheet.create({
         height:'20%'
     },
     MenuTop: {
-        marginLeft:'5%',
-        marginRight:'5%',
+        marginHorizontal:'5%',
         padding:15,
         borderRadius:32,
         backgroundColor:'#FFFFFF',

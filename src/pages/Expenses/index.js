@@ -1,11 +1,10 @@
 import styles from './styles';
 import { View, Text } from "react-native";
 
-import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 
-export default function MatrizAgendamentos() {
-  const navigation = useNavigation();
+export default function Expenses({ route }) {
+  const { storeType } = route.params
 
   return (
     <View style={styles.Container}>
@@ -15,7 +14,7 @@ export default function MatrizAgendamentos() {
         <Animatable.View
           animation='fadeInDown'
           style={styles.MenuTop}>
-          <Text style={styles.Title}>Matriz / Agendamentos</Text>
+          <Text style={styles.Title}>{storeType} / Despesas</Text>
         </Animatable.View>
       </View>
     </View>
