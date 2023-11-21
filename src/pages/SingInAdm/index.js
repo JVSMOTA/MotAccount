@@ -8,7 +8,7 @@ export default function SingIn() {
   return (
     <LinearGradient style={styles.Container} colors={['#FF9B3F', '#DB5605']}>
 
-      <Pressable onPress={Keyboard.dismiss}>
+      <Pressable onPress={Keyboard.dismiss} style={styles.ContainerPressable}>
       
         <Logo/>
         <LoginFormAdm/>
