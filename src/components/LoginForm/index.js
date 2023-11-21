@@ -13,12 +13,12 @@ export default function LoginForm() {
       <Text style={styles.Title}>Entrar no MotAccount</Text>
       
       <Button   
-        onPress='Matriz'
+        onPress={() => navigation.navigate('Matriz')}
         placeholder='Loja Matriz'
       />
 
       <Button   
-        onPress='Filial'
+        onPress={() => navigation.navigate('Filial')}
         placeholder='Loja Filial'
       />
 

@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
         width:'auto'
     },
     Title: {
-        paddingLeft:'5%',
         fontSize:16,
         fontWeight:'bold',
         color:'#DB5807'
@@ -22,6 +21,16 @@ const styles = StyleSheet.create({
         paddingTop:'4%',
         paddingBottom:'4%',
         fontSize:16
+    },
+    ErrorMessage: {
+        color:"red"
+    },
+    TitleAndError: {
+        paddingLeft:'5%',
+        paddingRight:'5%',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
     }
 });
 

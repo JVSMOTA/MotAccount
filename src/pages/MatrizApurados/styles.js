@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
     PageContent: {
         flex:1,
         marginTop:'-35%',
-        marginBottom:'5%',
-        justifyContent:'space-between'
+        gap:30
     },
     HeaderLaranja: {
         backgroundColor:'#FF9B3F',
@@ -30,6 +29,14 @@ const styles = StyleSheet.create({
         fontSize:24,
         fontWeight:'bold',
         color:'#DB5807'
+    },
+    Menu: {
+        marginLeft:'5%',
+        marginRight:'5%',
+        padding:15,
+        borderTopLeftRadius:32,
+        borderTopRightRadius:32,
+        backgroundColor:'#FFFFFF'
     }
 });
 
