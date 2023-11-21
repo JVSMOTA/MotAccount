@@ -8,6 +8,13 @@ const styles = StyleSheet.create({
         borderColor:'#DB5605',
         gap:5
     },
+    ContainerDay: {
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent: "space-between",
+        paddingLeft:"5%",
+        paddingRight:"5%"        
+    },
     Celula: {
         flexDirection:"row",
         alignItems:"center",
@@ -24,7 +31,16 @@ const styles = StyleSheet.create({
     Valor: {
         color:'#DB5605',
         fontSize:20
+    },
+    Dia: {
+        color:'#DB5605',
+        fontWeight: "bold"
+    },
+    Data: {
+        color:'#DB5605',
+        fontWeight: "bold"
     }
+    
 });
 
 export default styles;
