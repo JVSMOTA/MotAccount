@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     PageContent: {
         flex:1,
         marginTop:'-35%',
-        gap:30
+        gap:15
     },
     HeaderLaranja: {
         backgroundColor:'#FF9B3F',
@@ -33,10 +33,18 @@ const styles = StyleSheet.create({
     Menu: {
         marginLeft:'5%',
         marginRight:'5%',
-        padding:15,
+        paddingLeft:15,
+        paddingRight:15,
+        paddingTop:5,
         borderTopLeftRadius:32,
         borderTopRightRadius:32,
         backgroundColor:'#FFFFFF'
+    },
+    SubTitle: {
+        color: '#DB5807',
+        fontSize: 24,
+        fontWeight: "bold",
+        textAlign: "center"
     }
 });
 

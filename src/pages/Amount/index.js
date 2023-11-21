@@ -8,6 +8,31 @@ import * as Animatable from 'react-native-animatable'
 export default function Amount({ route }) {
   const { storeType } = route.params
 
+  // Função para obter a data dos últimos 30 dias
+  const getLastTenDays = () => {
+    const today = new Date()
+    const lastTenDays = Array.from({ length: 30 }, (_, index) => {
+      const day = new Date(today)
+      day.setDate(today.getDate() - index)
+      return day
+    })
+    return lastTenDays
+  }
+
+  const lastTenDays = getLastTenDays()
+  
+  const getDayOfWeek = (date) => {
+    const daysOfWeek = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']
+    return daysOfWeek[date.getDay()]
+  }
+
+  const formatDate = (date) => {
+    const day = date.getDate().toString().padStart(2, '0')
+    const month = (date.getMonth() + 1).toString().padStart(2, '0')
+    const year = date.getFullYear()
+    return `${day}/${month}/${year}`
+  };
+
   return (
     <View style={styles.Container}>
 
@@ -20,11 +45,21 @@ export default function Amount({ route }) {
           <LargeButton placeholder='Novo Apurado'/>
         
         </Animatable.View>
+
+        <Text style={styles.SubTitle}>Últimos 30 dias</Text>
+        
         <ScrollView style={styles.Menu}>
-        
-          <DailyCalculation dia={null} data={null} fisico='00,00' cartao='00,00'/>
-          {/* Lista de Apurados diários */}
-        
+
+          {lastTenDays.map((day, index) => (
+            <DailyCalculation
+              key={index}
+              dia={getDayOfWeek(day)}
+              data={formatDate(day)}
+              fisico="00,00"
+              cartao="00,00"
+            />
+          ))}
+
         </ScrollView>
       
       </View>

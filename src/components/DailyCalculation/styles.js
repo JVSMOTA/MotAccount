@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
         borderRadius:5,
         borderWidth:1,
         borderColor:'#DB5605',
-        gap:5
+        gap:5,
+        marginBottom:10
     },
     ContainerDay: {
         flexDirection:"row",
