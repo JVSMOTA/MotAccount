@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
         height:'20%'
     },
     MenuTop: {
-        marginLeft:'5%',
-        marginRight:'5%',
+        marginHorizontal:'5%',
         padding:15,
         borderRadius:32,
         backgroundColor:'#FFFFFF',
@@ -31,10 +30,8 @@ const styles = StyleSheet.create({
         color:'#DB5807'
     },
     Menu: {
-        marginLeft:'5%',
-        marginRight:'5%',
-        paddingLeft:15,
-        paddingRight:15,
+        marginHorizontal:'5%',
+        paddingHorizontal:15,
         paddingTop:5,
         borderTopLeftRadius:32,
         borderTopRightRadius:32,

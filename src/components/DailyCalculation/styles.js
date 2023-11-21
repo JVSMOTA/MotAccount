@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         alignItems:"center",
         justifyContent: "space-between",
-        paddingLeft:"5%",
-        paddingRight:"5%"        
+        paddingHorizontal:"5%"   
     },
     Celula: {
         flexDirection:"row",
@@ -22,8 +21,7 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
         backgroundColor:'#FFE6CF',
         color:'#DB5605',
-        paddingLeft:'5%',
-        paddingRight:'5%'
+        paddingHorizontal:'5%'
     },
     Tipo: {
         color:'#DB5605',

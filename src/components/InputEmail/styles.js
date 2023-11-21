@@ -17,10 +17,8 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFF1E3',
         color:'#FF9B3F',
         borderWidth:1,
-        paddingLeft:'5%',
-        paddingRight:'5%',
-        paddingTop:'4%',
-        paddingBottom:'4%',
+        paddingHorizontal:'5%',
+        paddingVertical:'4%',
         fontSize:16
     }
 });
