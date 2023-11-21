@@ -1,5 +1,6 @@
 import styles from './styles';
 import { View, Text } from "react-native";
+import LargeButton from '../../components/LargeButton';
 
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
@@ -16,6 +17,7 @@ export default function MatrizApurados() {
           animation='fadeInDown'
           style={styles.MenuTop}>
           <Text style={styles.Title}>Matriz / Apurados</Text>
+          <LargeButton placeholder='Novo Apurado'/>
         </Animatable.View>
       </View>
     </View>
