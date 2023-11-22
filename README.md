@@ -1,5 +1,11 @@
 # MotAccount
 
+<div align="right">
+  
+[![HitCount](https://hits.dwyl.com/JVSMOTA/MotAccount.svg?style=flat-square)](http://hits.dwyl.com/JVSMOTA/MotAccount)
+
+</div>
+
 ## 📱 Prototipagem
 
 ![Design da MotAccount](src/assets/Design.png)
