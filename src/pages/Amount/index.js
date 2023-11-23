@@ -8,10 +8,10 @@ import * as Animatable from 'react-native-animatable'
 export default function Amount({ route }) {
   const { storeType } = route.params
 
-  // Função para obter a data dos últimos 30 dias
+  // Função para obter a data dos últimos 31 dias
   const getLastTenDays = () => {
     const today = new Date()
-    const lastTenDays = Array.from({ length: 30 }, (_, index) => {
+    const lastTenDays = Array.from({ length: 31 }, (_, index) => {
       const day = new Date(today)
       day.setDate(today.getDate() - index)
       return day
@@ -46,7 +46,7 @@ export default function Amount({ route }) {
         
         </Animatable.View>
 
-        <Text style={styles.SubTitle}>Últimos 30 dias</Text>
+        <Text style={styles.SubTitle}>Últimos 31 dias</Text>
         
         <ScrollView style={styles.Menu}>
 
