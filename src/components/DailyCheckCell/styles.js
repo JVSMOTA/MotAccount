@@ -2,9 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     Container: {
-        flexDirection:"row",
-        padding:'3%',
-        gap:5,
+        flexDirection:"column",
         borderRadius:5,
         borderWidth:1,
         borderColor:'#DB5605'
