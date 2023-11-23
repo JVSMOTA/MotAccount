@@ -4,6 +4,7 @@ import { View, Text, ScrollView } from "react-native"
 import * as Animatable from 'react-native-animatable'
 import LargeButton from '../../components/LargeButton'
 import DailyCheckCell from '../../components/DailyCheckCell'
+import CheckCell from '../../components/CheckCell'
 
 export default function Schedules({ route }) {
   const { storeType } = route.params
@@ -14,7 +15,7 @@ export default function Schedules({ route }) {
     {id:3, data:"23/11/2023", razao: "Internet", valor: "70,00"},
     {id:4, data:"24/11/2023", razao: "Cagepa", valor: "35,00"},
     {id:5, data:"25/11/2023", razao: "Luz", valor: "40,00"}
-];
+  ];
 
   return (
     <View style={styles.Container}>
@@ -33,7 +34,7 @@ export default function Schedules({ route }) {
 
         <ScrollView style={styles.Menu}>
 
-          <DailyCheckCell options={listaDeAgendamentos} onChange={(op) => alert(op)}/>
+          <DailyCheckCell options={listaDeAgendamentos}/>
 
         </ScrollView>
 
