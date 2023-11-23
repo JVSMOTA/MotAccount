@@ -13,8 +13,9 @@ export default function Schedules({ route }) {
     {id:2, data:"22/11/2023", razao: "Havainas", valor: "600,00"},
     {id:3, data:"23/11/2023", razao: "Internet", valor: "70,00"},
     {id:4, data:"24/11/2023", razao: "Cagepa", valor: "35,00"},
-    {id:5, data:"25/11/2023", razao: "Luz", valor: "40,00"}
-];
+    {id:5, data:"25/11/2023", razao: "Luz", valor: "40,00"},
+    {id:6, data:"26/11/2023", razao: "Gogowear", valor: "450,00"}
+  ];
 
   return (
     <View style={styles.Container}>
@@ -33,7 +34,7 @@ export default function Schedules({ route }) {
 
         <ScrollView style={styles.Menu}>
 
-          <DailyCheckCell options={listaDeAgendamentos} onChange={(op) => alert(op)}/>
+          <DailyCheckCell options={listaDeAgendamentos}/>
 
         </ScrollView>
 
