@@ -1,11 +1,11 @@
-import { Text, Image, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import styles from './styles';
+import { Text, Image, TouchableOpacity } from 'react-native'
+import Icon from 'react-native-vector-icons/Feather'
+import styles from './styles'
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native'
 
 export default function LargeButton({placeholder, onPress}) {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   return (
     <TouchableOpacity 
@@ -14,5 +14,5 @@ export default function LargeButton({placeholder, onPress}) {
       <Text style={styles.Title}>{placeholder}</Text>
       <Icon name="plus" size={40} style={styles.Icon}/>
     </TouchableOpacity>
-  );
+  )
 }
