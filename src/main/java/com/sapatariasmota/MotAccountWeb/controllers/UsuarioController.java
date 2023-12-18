@@ -8,6 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +25,14 @@ public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @PostMapping("/usuarios")
     public ResponseEntity<UsuarioModel> saveUsuario(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
         var usuarioModel = new UsuarioModel();
         BeanUtils.copyProperties(usuarioRecordDto, usuarioModel);
+        String encoder = this.passwordEncoder.encode(usuarioModel.getSenha());
+        usuarioModel.setSenha(encoder);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuarioModel));
     }
 
@@ -62,6 +68,8 @@ public class UsuarioController {
         }
         var usuarioModel = usuarioO.get();
         BeanUtils.copyProperties(usuarioRecordDto, usuarioModel);
+        String encoder = this.passwordEncoder.encode(usuarioModel.getSenha());
+        usuarioModel.setSenha(encoder);
         return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
     }
 
@@ -73,5 +81,15 @@ public class UsuarioController {
         }
         usuarioRepository.delete(usuarioO.get());
         return ResponseEntity.status(HttpStatus.OK).body("Usuário deleted successfully.");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UsuarioModel> validarSenha(@RequestBody UsuarioModel usuarioModel) {
+        String senha = usuarioRepository.getById(usuarioModel.getIdUsuario()).getSenha();
+        Boolean valid = passwordEncoder.matches(usuarioModel.getSenha(), senha);
+        if (!valid) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioModel);
     }
 }
