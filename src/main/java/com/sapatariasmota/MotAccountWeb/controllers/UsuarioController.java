@@ -90,6 +90,6 @@ public class UsuarioController {
         if (!valid) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioModel);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
