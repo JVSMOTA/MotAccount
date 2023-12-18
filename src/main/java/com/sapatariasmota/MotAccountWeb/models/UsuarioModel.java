@@ -7,13 +7,18 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_USUARIOS")
+@Table(name = "TB_USUARIOS",
+    uniqueConstraints = {
+    @UniqueConstraint(name = "uk_email", columnNames = "email"),
+    @UniqueConstraint(name = "uk_nome", columnNames = "nome")
+    }
+)
 public class UsuarioModel extends RepresentationModel<UsuarioModel> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idUsuario;
-    private Boolean isAdm;
+    private Boolean administrador;
     private String nome;
     private String email;
     private String senha;
@@ -26,12 +31,12 @@ public class UsuarioModel extends RepresentationModel<UsuarioModel> implements S
         this.idUsuario = idUsuario;
     }
 
-    public Boolean getAdm() {
-        return isAdm;
+    public Boolean getAdministrador() {
+        return administrador;
     }
 
-    public void setAdm(Boolean adm) {
-        isAdm = adm;
+    public void setAdministrador(Boolean administrador) {
+        this.administrador = administrador;
     }
 
     public String getNome() {

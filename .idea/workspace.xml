@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82e9841c-1fea-4ad2-9484-933ac7b852b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/controllers/UsuarioController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/dtos/UsuarioRecordDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/repositories/UsuarioRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/controllers/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/controllers/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/dtos/UsuarioRecordDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/dtos/UsuarioRecordDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/models/UsuarioModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sapatariasmota/MotAccountWeb/models/UsuarioModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
