@@ -1,8 +1,11 @@
 package com.sapatariasmota.MotAccountWeb.controllers;
 
 import com.sapatariasmota.MotAccountWeb.dtos.UsuarioRecordDto;
+import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotAuthorizedException;
+import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotFoundException;
 import com.sapatariasmota.MotAccountWeb.models.UsuarioModel;
 import com.sapatariasmota.MotAccountWeb.repositories.UsuarioRepository;
+import com.sapatariasmota.MotAccountWeb.services.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,74 +25,59 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 public class UsuarioController {
 
-    @Autowired
-    UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    @PostMapping("/usuarios")
-    public ResponseEntity<UsuarioModel> saveUsuario(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
-        var usuarioModel = new UsuarioModel();
-        BeanUtils.copyProperties(usuarioRecordDto, usuarioModel);
-        String encoder = this.passwordEncoder.encode(usuarioModel.getSenha());
-        usuarioModel.setSenha(encoder);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuarioModel));
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
-
-    @GetMapping("/usuarios")
-    public ResponseEntity<List<UsuarioModel>> getAllUsuarios() {
-        List<UsuarioModel> usuarioList = usuarioRepository.findAll();
-        if(!usuarioList.isEmpty()){
-            for (UsuarioModel usuario : usuarioList) {
-                UUID id = usuario.getIdUsuario();
-                usuario.add(linkTo(methodOn(UsuarioController.class).getOneUsuario(id)).withSelfRel());
-            }
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioList);
+    @PostMapping("/usuarios")
+    public ResponseEntity<UsuarioModel> createUsuario(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.createUsuario(usuarioRecordDto));
     }
 
     @GetMapping("/usuarios/{id}")
     public ResponseEntity<Object> getOneUsuario(@PathVariable(value = "id") UUID id) {
-        Optional<UsuarioModel> usuarioO = usuarioRepository.findById(id);
-        if(usuarioO.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário not found.");
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getUsuarioById(id));
+        } catch (UsuarioNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-        usuarioO.get().add(linkTo(methodOn(UsuarioController.class).getAllUsuarios()).withSelfRel());
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioO.get());
+    }
+
+    @GetMapping("/usuarios")
+    public ResponseEntity<List<UsuarioModel>> getAllUsuarios() {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getAllUsuarios());
     }
 
     @PutMapping("/usuarios/{id}")
-    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") UUID id,
-                                             @RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
-        Optional<UsuarioModel> usuarioO = usuarioRepository.findById(id);
-        if(usuarioO.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário not found.");
+    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") UUID id, @RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(usuarioService.updateUsuario(id, usuarioRecordDto));
+        } catch (UsuarioNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-        var usuarioModel = usuarioO.get();
-        BeanUtils.copyProperties(usuarioRecordDto, usuarioModel);
-        String encoder = this.passwordEncoder.encode(usuarioModel.getSenha());
-        usuarioModel.setSenha(encoder);
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
     }
 
     @DeleteMapping("/usuarios/{id}")
-    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") UUID id) {
-        Optional<UsuarioModel> usuarioO = usuarioRepository.findById(id);
-        if(usuarioO.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário not found.");
+    public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") UUID id) {
+        try {
+            usuarioService.deleteUsuario(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário deleted successfully.");
+        } catch (UsuarioNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-        usuarioRepository.delete(usuarioO.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Usuário deleted successfully.");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UsuarioModel> validarSenha(@RequestBody UsuarioModel usuarioModel) {
-        String senha = usuarioRepository.getById(usuarioModel.getIdUsuario()).getSenha();
-        Boolean valid = passwordEncoder.matches(usuarioModel.getSenha(), senha);
-        if (!valid) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    public ResponseEntity<?> validarSenha(@RequestBody UsuarioModel usuarioModel) {
+        try {
+            usuarioService.validarSenha(usuarioModel);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (UsuarioNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (UsuarioNotAuthorizedException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioModel);
     }
 }
