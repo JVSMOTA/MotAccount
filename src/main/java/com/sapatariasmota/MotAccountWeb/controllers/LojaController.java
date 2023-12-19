@@ -1,8 +1,12 @@
 package com.sapatariasmota.MotAccountWeb.controllers;
 
 import com.sapatariasmota.MotAccountWeb.dtos.LojaRecordDto;
+import com.sapatariasmota.MotAccountWeb.exception.LojaNotFoundException;
+import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotFoundException;
 import com.sapatariasmota.MotAccountWeb.models.LojaModel;
 import com.sapatariasmota.MotAccountWeb.repositories.LojaRepository;
+import com.sapatariasmota.MotAccountWeb.services.LojaService;
+import com.sapatariasmota.MotAccountWeb.services.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,57 +23,47 @@ import java.util.UUID;
 @RestController
 public class LojaController {
 
-    @Autowired
-    LojaRepository lojaRepository;
+    private LojaService lojaService;
 
-    @PostMapping("/lojas")
-    public ResponseEntity<LojaModel> saveLoja(@RequestBody @Valid LojaRecordDto lojaRecordDto) {
-        var lojaModel = new LojaModel();
-        BeanUtils.copyProperties(lojaRecordDto, lojaModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(lojaRepository.save(lojaModel));
+    public LojaController(LojaService lojaService) {
+        this.lojaService = lojaService;
     }
 
-    @GetMapping("/lojas")
-    public ResponseEntity<List<LojaModel>> getAllLojas() {
-        List<LojaModel> lojaList = lojaRepository.findAll();
-        if(!lojaList.isEmpty()){
-            for (LojaModel loja : lojaList) {
-                UUID id = loja.getIdLoja();
-                loja.add(linkTo(methodOn(LojaController.class).getOneLoja(id)).withSelfRel());
-            }
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(lojaList);
+    @PostMapping("/lojas")
+    public ResponseEntity<LojaModel> createLoja(@RequestBody @Valid LojaRecordDto lojaRecordDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(lojaService.createLoja(lojaRecordDto));
     }
 
     @GetMapping("/lojas/{id}")
     public ResponseEntity<Object> getOneLoja(@PathVariable(value = "id") UUID id) {
-        Optional<LojaModel> lojaO = lojaRepository.findById(id);
-        if(lojaO.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Loja not found.");
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(lojaService.getLojaById(id));
+        } catch (LojaNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-        lojaO.get().add(linkTo(methodOn(LojaController.class).getAllLojas()).withSelfRel());
-        return ResponseEntity.status(HttpStatus.OK).body(lojaO.get());
+    }
+
+    @GetMapping("/lojas")
+    public ResponseEntity<List<LojaModel>> getAllLojas() {
+        return ResponseEntity.status(HttpStatus.OK).body(lojaService.getAllLojas());
     }
 
     @PutMapping("/lojas/{id}")
-    public ResponseEntity<Object> updateLoja(@PathVariable(value = "id") UUID id,
-                                             @RequestBody @Valid LojaRecordDto lojaRecordDto) {
-        Optional<LojaModel> lojaO = lojaRepository.findById(id);
-        if(lojaO.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Loja not found.");
+    public ResponseEntity<Object> updateLoja(@PathVariable(value = "id") UUID id, @RequestBody @Valid LojaRecordDto lojaRecordDto) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(lojaService.updateLoja(id, lojaRecordDto));
+        } catch (LojaNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-        var lojaModel = lojaO.get();
-        BeanUtils.copyProperties(lojaRecordDto, lojaModel);
-        return ResponseEntity.status(HttpStatus.OK).body(lojaRepository.save(lojaModel));
     }
 
     @DeleteMapping("/lojas/{id}")
-    public ResponseEntity<Object> deleteLoja(@PathVariable(value = "id") UUID id) {
-        Optional<LojaModel> lojaO = lojaRepository.findById(id);
-        if(lojaO.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Loja not found.");
+    public ResponseEntity<?> deleteLoja(@PathVariable(value = "id") UUID id) {
+        try {
+            lojaService.deleteLoja(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Loja deleted successfully.");
+        } catch (LojaNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-        lojaRepository.delete(lojaO.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Loja deleted successfully.");
     }
 }

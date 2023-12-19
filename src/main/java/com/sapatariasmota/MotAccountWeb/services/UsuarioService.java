@@ -11,23 +11,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
-
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class UsuarioService {
 
-
     @Autowired
     private UsuarioRepository usuarioRepository;
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder();
+    }
+
+    public UsuarioModel createUsuario(UsuarioRecordDto usuarioRecordDto) {
+        UsuarioModel usuario = new UsuarioModel();
+        BeanUtils.copyProperties(usuarioRecordDto, usuario);
+        String encoder = this.passwordEncoder.encode(usuario.getSenha());
+        usuario.setSenha(encoder);
+        usuarioRepository.save(usuario);
+        return usuario;
     }
 
     public List<UsuarioModel> getAllUsuarios() {
@@ -47,20 +54,12 @@ public class UsuarioService {
         return usuario;
     }
 
-    public UsuarioModel createUsuario(UsuarioRecordDto usuarioRecordDto) {
-        UsuarioModel usuario = new UsuarioModel();
-        BeanUtils.copyProperties(usuarioRecordDto, usuario);
-        String encoder = this.passwordEncoder.encode(usuario.getSenha());
-        usuario.setSenha(encoder);
-        usuarioRepository.save(usuario);
-        return usuario;
-    }
-
     public UsuarioModel updateUsuario(UUID id, UsuarioRecordDto usuarioRecordDto){
         UsuarioModel usuario = usuarioRepository.findById(id).orElseThrow(UsuarioNotFoundException::new);
         BeanUtils.copyProperties(usuarioRecordDto, usuario);
         String encoder = this.passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(encoder);
+        usuarioRepository.save(usuario);
         return usuario;
     }
 
