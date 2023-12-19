@@ -2,8 +2,6 @@ package com.sapatariasmota.MotAccountWeb.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;

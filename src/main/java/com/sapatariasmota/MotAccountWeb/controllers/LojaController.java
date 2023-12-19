@@ -12,13 +12,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/lojas")
@@ -31,7 +31,7 @@ public class LojaController {
     }
 
     @PostMapping
-    public ResponseEntity<LojaModel> createLoja(@RequestBody @Valid LojaRecordDto lojaRecordDto) {
+    public ResponseEntity<LojaModel> createLoja(@Valid @RequestBody LojaRecordDto lojaRecordDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(lojaService.createLoja(lojaRecordDto));
     }
 
@@ -50,7 +50,7 @@ public class LojaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateLoja(@PathVariable(value = "id") UUID id, @RequestBody @Valid LojaRecordDto lojaRecordDto) {
+    public ResponseEntity<Object> updateLoja(@PathVariable(value = "id") UUID id, @Valid @RequestBody LojaRecordDto lojaRecordDto) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(lojaService.updateLoja(id, lojaRecordDto));
         } catch (LojaNotFoundException e) {
@@ -66,5 +66,18 @@ public class LojaController {
         } catch (LojaNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationException(MethodArgumentNotValidException e) {
+        Map<String, String> errors = new HashMap<>();
+
+        e.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }
