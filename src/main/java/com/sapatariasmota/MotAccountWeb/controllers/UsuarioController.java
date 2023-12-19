@@ -23,6 +23,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     private UsuarioService usuarioService;
@@ -31,12 +32,12 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("/usuarios")
+    @PostMapping
     public ResponseEntity<UsuarioModel> createUsuario(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.createUsuario(usuarioRecordDto));
     }
 
-    @GetMapping("/usuarios/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getOneUsuario(@PathVariable(value = "id") UUID id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getUsuarioById(id));
@@ -45,12 +46,12 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/usuarios")
+    @GetMapping
     public ResponseEntity<List<UsuarioModel>> getAllUsuarios() {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getAllUsuarios());
     }
 
-    @PutMapping("/usuarios/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") UUID id, @RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(usuarioService.updateUsuario(id, usuarioRecordDto));
@@ -59,7 +60,7 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping("/usuarios/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") UUID id) {
         try {
             usuarioService.deleteUsuario(id);

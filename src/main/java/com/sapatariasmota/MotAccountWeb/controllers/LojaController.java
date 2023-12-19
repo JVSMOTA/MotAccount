@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/lojas")
 public class LojaController {
 
     private LojaService lojaService;
@@ -29,12 +30,12 @@ public class LojaController {
         this.lojaService = lojaService;
     }
 
-    @PostMapping("/lojas")
+    @PostMapping
     public ResponseEntity<LojaModel> createLoja(@RequestBody @Valid LojaRecordDto lojaRecordDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(lojaService.createLoja(lojaRecordDto));
     }
 
-    @GetMapping("/lojas/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getOneLoja(@PathVariable(value = "id") UUID id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(lojaService.getLojaById(id));
@@ -43,12 +44,12 @@ public class LojaController {
         }
     }
 
-    @GetMapping("/lojas")
+    @GetMapping
     public ResponseEntity<List<LojaModel>> getAllLojas() {
         return ResponseEntity.status(HttpStatus.OK).body(lojaService.getAllLojas());
     }
 
-    @PutMapping("/lojas/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Object> updateLoja(@PathVariable(value = "id") UUID id, @RequestBody @Valid LojaRecordDto lojaRecordDto) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(lojaService.updateLoja(id, lojaRecordDto));
@@ -57,7 +58,7 @@ public class LojaController {
         }
     }
 
-    @DeleteMapping("/lojas/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteLoja(@PathVariable(value = "id") UUID id) {
         try {
             lojaService.deleteLoja(id);
