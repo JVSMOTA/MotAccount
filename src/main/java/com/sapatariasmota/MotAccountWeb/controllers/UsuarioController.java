@@ -63,15 +63,6 @@ public class UsuarioController {
         }
     }
 
-//    @PostMapping("/login")
-//    public ResponseEntity<Token> logar(@Valid @RequestBody UsuarioLoginDto usuarioLoginDto) {
-//        Token token = usuarioService.gerarToken(usuarioLoginDto);
-//        if (token != null) {
-//            return ResponseEntity.status(HttpStatus.OK).body(token);
-//        }
-//        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-//    }
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationException(MethodArgumentNotValidException e) {

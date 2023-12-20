@@ -1,9 +1,11 @@
 package com.sapatariasmota.MotAccountWeb.controllers;
 
 import com.sapatariasmota.MotAccountWeb.dtos.AuthenticationDto;
+import com.sapatariasmota.MotAccountWeb.dtos.LoginResponseDto;
 import com.sapatariasmota.MotAccountWeb.dtos.RegisterDto;
 import com.sapatariasmota.MotAccountWeb.models.UsuarioModel;
 import com.sapatariasmota.MotAccountWeb.repositories.UsuarioRepository;
+import com.sapatariasmota.MotAccountWeb.services.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,9 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    TokenService tokenService;
+
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @PostMapping("/login")
@@ -33,7 +38,9 @@ public class AuthenticationController {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        var token = tokenService.generateToken((UsuarioModel) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDto(token));
     }
 
     @PostMapping("/register")
@@ -43,7 +50,8 @@ public class AuthenticationController {
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
         UsuarioModel newUsuario = new UsuarioModel(data.nome(), data.email(), encryptedPassword, data.role());
 
-        usuarioRepository.save(newUsuario);
+        this.usuarioRepository.save(newUsuario);
+
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
