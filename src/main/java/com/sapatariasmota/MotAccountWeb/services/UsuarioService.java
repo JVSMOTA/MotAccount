@@ -1,15 +1,9 @@
 package com.sapatariasmota.MotAccountWeb.services;
 
-import com.sapatariasmota.MotAccountWeb.controllers.UsuarioController;
-import com.sapatariasmota.MotAccountWeb.dtos.UsuarioDto;
 import com.sapatariasmota.MotAccountWeb.dtos.UsuarioRecordDto;
-import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotAuthorizedException;
 import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotFoundException;
 import com.sapatariasmota.MotAccountWeb.models.UsuarioModel;
 import com.sapatariasmota.MotAccountWeb.repositories.UsuarioRepository;
-import com.sapatariasmota.MotAccountWeb.security.Token;
-import com.sapatariasmota.MotAccountWeb.security.TokenUtil;
-import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class UsuarioService {
@@ -42,20 +35,11 @@ public class UsuarioService {
     }
 
     public List<UsuarioModel> getAllUsuarios() {
-        List<UsuarioModel> usuarioModelList = usuarioRepository.findAll();
-        if(!usuarioModelList.isEmpty()){
-            for (UsuarioModel usuario : usuarioModelList) {
-                UUID id = usuario.getIdUsuario();
-                usuario.add(linkTo(methodOn(UsuarioController.class).getOneUsuario(id)).withSelfRel());
-            }
-        }
-        return usuarioModelList;
+        return usuarioRepository.findAll();
     }
 
     public UsuarioModel getUsuarioById(UUID id) {
-        UsuarioModel usuario = usuarioRepository.findById(id).orElseThrow(UsuarioNotFoundException::new);
-        usuario.add(linkTo(methodOn(UsuarioController.class).getAllUsuarios()).withSelfRel());
-        return usuario;
+        return usuarioRepository.findById(id).orElseThrow(UsuarioNotFoundException::new);
     }
 
     public UsuarioModel updateUsuario(UUID id, UsuarioRecordDto usuarioRecordDto){
@@ -72,16 +56,14 @@ public class UsuarioService {
         usuarioRepository.deleteById(usuario.getIdUsuario());
     }
 
-    public Token gerarToken(@Valid UsuarioDto usuarioDto) {
-        UsuarioModel usuarioModel = usuarioRepository.findByEmail(usuarioDto.getEmail());
-        if (usuarioModel != null) {
-            boolean valid = passwordEncoder.matches(usuarioDto.getSenha(), usuarioModel.getSenha());
-            if (!valid) {
-                return new Token(TokenUtil.createToken(usuarioModel));
-            }
-        }
-        return null;
-    }
-
-
+//    public Token gerarToken(@NotNull @Valid UsuarioLoginDto usuario) {
+//        UserDetails user = usuarioRepository.findByEmail(usuario.getEmail());
+//        if (user != null) {
+//            boolean valid = passwordEncoder.matches(usuario.getSenha(), user.getPassword());
+//            if (valid) {
+//                return new Token(TokenUtil.createToken(user));
+//            }
+//        }
+//        return null;
+//    }
 }

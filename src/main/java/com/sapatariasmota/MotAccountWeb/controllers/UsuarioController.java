@@ -1,22 +1,12 @@
 package com.sapatariasmota.MotAccountWeb.controllers;
 
-import com.sapatariasmota.MotAccountWeb.dtos.UsuarioDto;
 import com.sapatariasmota.MotAccountWeb.dtos.UsuarioRecordDto;
-import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotAuthorizedException;
 import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotFoundException;
 import com.sapatariasmota.MotAccountWeb.models.UsuarioModel;
-import com.sapatariasmota.MotAccountWeb.repositories.UsuarioRepository;
-import com.sapatariasmota.MotAccountWeb.security.Token;
-import com.sapatariasmota.MotAccountWeb.security.TokenUtil;
 import com.sapatariasmota.MotAccountWeb.services.UsuarioService;
 import jakarta.validation.Valid;
-import lombok.experimental.FieldNameConstants;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -74,14 +63,14 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<Object> logar(@Valid @RequestBody UsuarioDto usuarioDto) {
-        Token token = usuarioService.gerarToken(usuarioDto);
-        if (token != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(token);
-        }
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<Token> logar(@Valid @RequestBody UsuarioLoginDto usuarioLoginDto) {
+//        Token token = usuarioService.gerarToken(usuarioLoginDto);
+//        if (token != null) {
+//            return ResponseEntity.status(HttpStatus.OK).body(token);
+//        }
+//        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+//    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
