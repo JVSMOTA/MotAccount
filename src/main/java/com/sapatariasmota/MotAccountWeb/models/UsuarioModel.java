@@ -1,11 +1,16 @@
 package com.sapatariasmota.MotAccountWeb.models;
 
 import jakarta.persistence.*;
-import org.springframework.hateoas.RepresentationModel;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "TB_USUARIOS",
     uniqueConstraints = {
@@ -13,53 +18,60 @@ import java.util.UUID;
     @UniqueConstraint(name = "uk_nome", columnNames = "nome")
     }
 )
-public class UsuarioModel extends RepresentationModel<UsuarioModel> implements Serializable {
+public class UsuarioModel implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idUsuario;
-    private Boolean administrador;
+    private UsuarioRole role;
     private String nome;
     private String email;
     private String senha;
 
-    public UUID getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(UUID idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Boolean getAdministrador() {
-        return administrador;
-    }
-
-    public void setAdministrador(Boolean administrador) {
-        this.administrador = administrador;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
+    public UsuarioModel(String nome, String email, String senha, UsuarioRole role) {
+        this.role = role;
         this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
+        this.senha = senha;
     }
 
-    public String getSenha() {
+    public UsuarioModel() {
+
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.role == UsuarioRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
