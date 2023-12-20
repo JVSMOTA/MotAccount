@@ -1,11 +1,15 @@
 package com.sapatariasmota.MotAccountWeb.services;
 
 import com.sapatariasmota.MotAccountWeb.controllers.UsuarioController;
+import com.sapatariasmota.MotAccountWeb.dtos.UsuarioDto;
 import com.sapatariasmota.MotAccountWeb.dtos.UsuarioRecordDto;
 import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotAuthorizedException;
 import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotFoundException;
 import com.sapatariasmota.MotAccountWeb.models.UsuarioModel;
 import com.sapatariasmota.MotAccountWeb.repositories.UsuarioRepository;
+import com.sapatariasmota.MotAccountWeb.security.Token;
+import com.sapatariasmota.MotAccountWeb.security.TokenUtil;
+import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -68,10 +72,16 @@ public class UsuarioService {
         usuarioRepository.deleteById(usuario.getIdUsuario());
     }
 
-    public void validarSenha(UsuarioModel usuarioModel) {
-        String senha = usuarioRepository.findById(usuarioModel.getIdUsuario()).orElseThrow(UsuarioNotFoundException::new).getSenha();
-        if (!passwordEncoder.matches(usuarioModel.getSenha(), senha)) {
-            throw new UsuarioNotAuthorizedException();
+    public Token gerarToken(@Valid UsuarioDto usuarioDto) {
+        UsuarioModel usuarioModel = usuarioRepository.findByEmail(usuarioDto.getEmail());
+        if (usuarioModel != null) {
+            boolean valid = passwordEncoder.matches(usuarioDto.getSenha(), usuarioModel.getSenha());
+            if (!valid) {
+                return new Token(TokenUtil.createToken(usuarioModel));
+            }
         }
+        return null;
     }
+
+
 }

@@ -1,10 +1,13 @@
 package com.sapatariasmota.MotAccountWeb.controllers;
 
+import com.sapatariasmota.MotAccountWeb.dtos.UsuarioDto;
 import com.sapatariasmota.MotAccountWeb.dtos.UsuarioRecordDto;
 import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotAuthorizedException;
 import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotFoundException;
 import com.sapatariasmota.MotAccountWeb.models.UsuarioModel;
 import com.sapatariasmota.MotAccountWeb.repositories.UsuarioRepository;
+import com.sapatariasmota.MotAccountWeb.security.Token;
+import com.sapatariasmota.MotAccountWeb.security.TokenUtil;
 import com.sapatariasmota.MotAccountWeb.services.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.experimental.FieldNameConstants;
@@ -72,15 +75,12 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> validarSenha(@Valid @RequestBody UsuarioModel usuarioModel) {
-        try {
-            usuarioService.validarSenha(usuarioModel);
-            return ResponseEntity.status(HttpStatus.OK).build();
-        } catch (UsuarioNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (UsuarioNotAuthorizedException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+    public ResponseEntity<Object> logar(@Valid @RequestBody UsuarioDto usuarioDto) {
+        Token token = usuarioService.gerarToken(usuarioDto);
+        if (token != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(token);
         }
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
