@@ -1,6 +1,8 @@
 package com.sapatariasmota.MotAccountWeb.services;
 
 import com.sapatariasmota.MotAccountWeb.dtos.ApuradoRecordDto;
+import com.sapatariasmota.MotAccountWeb.exception.ApuradoNotExistException;
+import com.sapatariasmota.MotAccountWeb.exception.ApuradoNotFoundException;
 import com.sapatariasmota.MotAccountWeb.exception.LojaNotExistException;
 import com.sapatariasmota.MotAccountWeb.models.ApuradoModel;
 import com.sapatariasmota.MotAccountWeb.models.LojaModel;
@@ -36,6 +38,15 @@ public class ApuradoService {
 
     public List<ApuradoModel> getAllApurados(UUID idLoja) {
         return lojaRepository.findById(idLoja).orElseThrow(LojaNotExistException::new).getApurados();
+    }
+
+    public ApuradoModel getApuradoById(UUID idLoja, UUID idApurado) {
+        LojaModel loja = lojaRepository.findById(idLoja).orElseThrow(LojaNotExistException::new);
+        ApuradoModel apurado = apuradoRepository.findById(idApurado).orElseThrow(ApuradoNotExistException::new);
+
+        if (!apurado.getLoja().equals(loja)) throw new ApuradoNotFoundException();
+
+        return apurado;
     }
 
 }

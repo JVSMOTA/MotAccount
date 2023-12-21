@@ -1,14 +1,16 @@
 package com.sapatariasmota.MotAccountWeb.controllers;
 
 import com.sapatariasmota.MotAccountWeb.dtos.ApuradoRecordDto;
-import com.sapatariasmota.MotAccountWeb.models.ApuradoModel;
+import com.sapatariasmota.MotAccountWeb.exception.ApuradoNotExistException;
+import com.sapatariasmota.MotAccountWeb.exception.ApuradoNotFoundException;
+import com.sapatariasmota.MotAccountWeb.exception.LojaNotExistException;
+import com.sapatariasmota.MotAccountWeb.exception.LojaNotFoundException;
 import com.sapatariasmota.MotAccountWeb.services.ApuradoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,13 +23,30 @@ public class ApuradoController {
     }
 
     @PostMapping("/lojas/{idLoja}/apurados")
-    public ResponseEntity<ApuradoModel> createApurado(@PathVariable(value = "idLoja") UUID idLoja, @Valid @RequestBody ApuradoRecordDto apuradoRecordDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(apuradoService.createApurado(idLoja, apuradoRecordDto));
+    public ResponseEntity<?> createApurado(@PathVariable(value = "idLoja") UUID idLoja, @Valid @RequestBody ApuradoRecordDto apuradoRecordDto) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(apuradoService.createApurado(idLoja, apuradoRecordDto));
+        } catch (LojaNotExistException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
     @GetMapping("/lojas/{idLoja}/apurados")
-    public ResponseEntity<List<ApuradoModel>> getAllApurados(@PathVariable(value = "idLoja") UUID idLoja) {
-        return ResponseEntity.status(HttpStatus.OK).body(apuradoService.getAllApurados(idLoja));
+    public ResponseEntity<?> getAllApurados(@PathVariable(value = "idLoja") UUID idLoja) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(apuradoService.getAllApurados(idLoja));
+        } catch (ApuradoNotFoundException | LojaNotFoundException | LojaNotExistException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/lojas/{idLoja}/apurados/{idApurado}")
+    public ResponseEntity<Object> getOneApurado(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idApurado") UUID idApurado) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(apuradoService.getApuradoById(idLoja, idApurado));
+        } catch (ApuradoNotFoundException | ApuradoNotExistException | LojaNotExistException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
 }
