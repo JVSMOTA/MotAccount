@@ -33,6 +33,7 @@ public class ApuradoService {
         BeanUtils.copyProperties(apuradoRecordDto, apurado);
         apurado.setLoja(loja);
         apuradoRepository.save(apurado);
+
         return apurado;
     }
 
@@ -51,11 +52,22 @@ public class ApuradoService {
 
     public ApuradoModel updateApurado(UUID idLoja, UUID idApurado, ApuradoRecordDto apuradoRecordDto) {
         LojaModel loja = lojaRepository.findById(idLoja).orElseThrow(LojaNotExistException::new);
-        ApuradoModel apurado = apuradoRepository.findById(idApurado).orElseThrow(ApuradoNotFoundException::new);
-        if (apurado.getLoja().equals(loja)) BeanUtils.copyProperties(apuradoRecordDto, apurado);
+        ApuradoModel apurado = apuradoRepository.findById(idApurado).orElseThrow(ApuradoNotExistException::new);
+
+        if (!apurado.getLoja().equals(loja)) throw new ApuradoNotFoundException();
+
+        BeanUtils.copyProperties(apuradoRecordDto, apurado);
         apuradoRepository.save(apurado);
+
         return apurado;
     }
 
+    public void deleteApurado(UUID idLoja, UUID idApurado) {
+        LojaModel loja = lojaRepository.findById(idLoja).orElseThrow(LojaNotExistException::new);
+        ApuradoModel apurado = apuradoRepository.findById(idApurado).orElseThrow(ApuradoNotExistException::new);
 
+        if (!apurado.getLoja().equals(loja)) throw new ApuradoNotFoundException();
+
+        apuradoRepository.delete(apurado);
+    }
 }

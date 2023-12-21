@@ -1,7 +1,6 @@
 package com.sapatariasmota.MotAccountWeb.controllers;
 
 import com.sapatariasmota.MotAccountWeb.dtos.ApuradoRecordDto;
-import com.sapatariasmota.MotAccountWeb.dtos.LojaRecordDto;
 import com.sapatariasmota.MotAccountWeb.exception.ApuradoNotExistException;
 import com.sapatariasmota.MotAccountWeb.exception.ApuradoNotFoundException;
 import com.sapatariasmota.MotAccountWeb.exception.LojaNotExistException;
@@ -10,8 +9,12 @@ import com.sapatariasmota.MotAccountWeb.services.ApuradoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -59,4 +62,26 @@ public class ApuradoController {
         }
     }
 
+    @DeleteMapping("/lojas/{idLoja}/apurados/{idApurado}")
+    public ResponseEntity<?> deleteLoja(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idApurado") UUID idApurado) {
+        try {
+            apuradoService.deleteApurado(idLoja, idApurado);
+            return ResponseEntity.status(HttpStatus.OK).body("Apurado deleted successfully.");
+        } catch (ApuradoNotFoundException | ApuradoNotExistException | LojaNotExistException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationException(MethodArgumentNotValidException e) {
+        Map<String, String> errors = new HashMap<>();
+
+        e.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
+    }
 }
