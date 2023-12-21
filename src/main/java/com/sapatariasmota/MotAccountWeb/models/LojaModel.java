@@ -1,4 +1,5 @@
 package com.sapatariasmota.MotAccountWeb.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.hateoas.RepresentationModel;
@@ -23,6 +24,7 @@ public class LojaModel extends RepresentationModel<LojaModel> implements Seriali
     private String endereco;
 
     @OneToMany(mappedBy = "loja")
+    @JsonIgnore
     private List<ApuradoModel> apurados;
 
 }

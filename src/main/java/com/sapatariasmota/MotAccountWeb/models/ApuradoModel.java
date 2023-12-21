@@ -1,5 +1,6 @@
 package com.sapatariasmota.MotAccountWeb.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class ApuradoModel {
     private UUID idApurado;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idLoja")
     private LojaModel loja;
 
