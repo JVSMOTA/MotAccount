@@ -32,7 +32,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/usuarios").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/lojas").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/lojas").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/lojas").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
