@@ -49,4 +49,13 @@ public class ApuradoService {
         return apurado;
     }
 
+    public ApuradoModel updateApurado(UUID idLoja, UUID idApurado, ApuradoRecordDto apuradoRecordDto) {
+        LojaModel loja = lojaRepository.findById(idLoja).orElseThrow(LojaNotExistException::new);
+        ApuradoModel apurado = apuradoRepository.findById(idApurado).orElseThrow(ApuradoNotFoundException::new);
+        if (apurado.getLoja().equals(loja)) BeanUtils.copyProperties(apuradoRecordDto, apurado);
+        apuradoRepository.save(apurado);
+        return apurado;
+    }
+
+
 }
