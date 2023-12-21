@@ -1,12 +1,12 @@
 package com.sapatariasmota.MotAccountWeb.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -22,5 +22,9 @@ public class LojaModel extends RepresentationModel<LojaModel> implements Seriali
     private String nome;
     private String tipo;
     private String endereco;
+
+    @OneToMany(mappedBy = "loja")
+    @JsonIgnore
+    private List<ApuradoModel> apurados;
 
 }
