@@ -11,9 +11,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -25,11 +26,13 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public ResponseEntity<UsuarioModel> createUsuario(@Valid @RequestBody UsuarioRecordDto usuarioRecordDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.createUsuario(usuarioRecordDto));
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneUsuario(@PathVariable(value = "id") UUID id) {
         try {
@@ -39,11 +42,13 @@ public class UsuarioController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public ResponseEntity<List<UsuarioModel>> getAllUsuarios() {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getAllUsuarios());
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") UUID id, @Valid @RequestBody UsuarioRecordDto usuarioRecordDto) {
         try {
@@ -53,6 +58,7 @@ public class UsuarioController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") UUID id) {
         try {

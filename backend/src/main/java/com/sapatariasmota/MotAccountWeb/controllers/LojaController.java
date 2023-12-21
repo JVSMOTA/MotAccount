@@ -2,23 +2,19 @@ package com.sapatariasmota.MotAccountWeb.controllers;
 
 import com.sapatariasmota.MotAccountWeb.dtos.LojaRecordDto;
 import com.sapatariasmota.MotAccountWeb.exception.LojaNotFoundException;
-import com.sapatariasmota.MotAccountWeb.exception.UsuarioNotFoundException;
 import com.sapatariasmota.MotAccountWeb.models.LojaModel;
-import com.sapatariasmota.MotAccountWeb.repositories.LojaRepository;
 import com.sapatariasmota.MotAccountWeb.services.LojaService;
-import com.sapatariasmota.MotAccountWeb.services.UsuarioService;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/lojas")
@@ -30,11 +26,13 @@ public class LojaController {
         this.lojaService = lojaService;
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public ResponseEntity<LojaModel> createLoja(@Valid @RequestBody LojaRecordDto lojaRecordDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(lojaService.createLoja(lojaRecordDto));
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneLoja(@PathVariable(value = "id") UUID id) {
         try {
@@ -44,11 +42,13 @@ public class LojaController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public ResponseEntity<List<LojaModel>> getAllLojas() {
         return ResponseEntity.status(HttpStatus.OK).body(lojaService.getAllLojas());
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateLoja(@PathVariable(value = "id") UUID id, @Valid @RequestBody LojaRecordDto lojaRecordDto) {
         try {
@@ -58,6 +58,7 @@ public class LojaController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteLoja(@PathVariable(value = "id") UUID id) {
         try {
