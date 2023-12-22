@@ -15,6 +15,24 @@ const ResetStyles = createGlobalStyle`
         background-color: #FFF5EC;
     }
 
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-size: x-large;
+    }
+
+    h2 {
+        padding: 0;
+        margin: 0;
+        font-size: large;
+    }
+
+    h3 {
+        padding: 0;
+        margin: 0;
+        font-size: medium;
+    }
+
     p {
         padding: 0;
         margin: 0;
