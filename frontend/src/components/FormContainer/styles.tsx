@@ -8,5 +8,7 @@ export const Container = styled.div`
   background-color: #FFFFFF;
   border-radius: 32px;
   padding: 20px;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 `;
