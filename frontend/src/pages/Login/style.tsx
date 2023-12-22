@@ -1,7 +1,7 @@
 // src/pages/Login/styles.tsx
 
-import { styled } from "@stitches/react"
+import styled from "styled-components"
 
-export const StyledLogin = styled("div", {
-
-})
+export const Title = styled.h1`
+    color: #DB5807;
+`;
