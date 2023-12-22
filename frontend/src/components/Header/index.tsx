@@ -1,21 +1,18 @@
 
-import { Container, Logo, LogoContainer, Menu } from "./styles"
+import { Container, Link, Logo, LogoContainer, NavLinksContainer } from "./styles"
 
-export default function Header({children}:any) {
+export default function Header() {
   return (
     <Container>
-      <LogoContainer>
+      <LogoContainer href="">
         <Logo /> 
         <p>MotAcoount</p>
       </LogoContainer>
-      {children}
-      <Menu>
-        <p>Instagram</p>
-        <hr />
-        <p>Sobre</p>
-        <hr />
-        <p>Login</p>
-      </Menu>
+      <NavLinksContainer>
+        <Link href="https://www.instagram.com/sapatariamota/">Instagram</Link>
+        <Link href="/about">Sobre</Link>
+        <Link href="/login">Login</Link>
+      </NavLinksContainer>
     </Container>
   )
 }
