@@ -32,7 +32,7 @@ export const LogoContainer = styled.a`
 
 export const Logo = styled(logo)`
   width: auto;
-  height: 3vh;
+  height: 1rem;
 `;
 
 export const NavLinksContainer = styled.div`
