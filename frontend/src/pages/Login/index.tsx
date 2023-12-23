@@ -6,6 +6,7 @@ import Footer from "../../components/Footer"
 import FormContainer from "../../components/FormContainer"
 import { Title } from "./style"
 import InputForm from "../../components/InputForm"
+import ButtonForm from "../../components/ButtonForm"
 
 export default function Login() {
 	return (
@@ -24,6 +25,7 @@ export default function Login() {
 					type="password" 
 					placeholder="Digite sua Senha"
 					/>
+					<ButtonForm placeholder="Entrar"/>
 				</FormContainer>
 			</JustifyContainer>
 			<Footer />
