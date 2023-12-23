@@ -10,7 +10,7 @@ export default function Header() {
       </LogoContainer>
       <NavLinksContainer>
         <Link href="/about">Sobre</Link>
-        <Link href="/login">Login</Link>
+        <Link href="/auth/login">Login</Link>
       </NavLinksContainer>
     </Container>
   )
