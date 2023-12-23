@@ -14,9 +14,12 @@ export const Container = styled.button`
   border-radius: 23px;
   color: #FFFFFF;
 
-  &:hover,
-  &:active {
+  &:hover {
     cursor: pointer;
     opacity: 0.8;
+  }
+  &:active {
+    opacity: 1.0;
+    transform: scale(0.98);
   }
 `;
