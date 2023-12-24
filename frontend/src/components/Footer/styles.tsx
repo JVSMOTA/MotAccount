@@ -41,7 +41,7 @@ export const NavLinksContainer = styled.div`
   font-size: small;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 10px;
   }
 `;

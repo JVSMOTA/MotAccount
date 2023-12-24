@@ -1,5 +1,3 @@
-// src/pages/Login/styles.tsx
-
 import styled from "styled-components"
 
 export const Title = styled.h1`
