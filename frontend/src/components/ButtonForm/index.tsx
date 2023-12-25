@@ -3,6 +3,7 @@ import { Container } from './styles';
 
 interface Props {
   placeholder?: string;
+  type?: any;
 }
 
 const ButtonForm: React.FC<Props> = (props) => {

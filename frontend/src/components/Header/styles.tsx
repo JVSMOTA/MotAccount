@@ -35,6 +35,11 @@ export const Logo = styled(logo)`
   height: 1rem;
 `;
 
+export const TituloLogo = styled.p`
+  color: #FFFFFF;
+  font-weight: bold;
+`;
+
 export const NavLinksContainer = styled.div`
   display: flex;
   gap: 1vw;

@@ -19,6 +19,8 @@ const ResetStyles = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-size: x-large;
+        text-align: center;
+        color: #DB5807;
     }
 
     h2 {
@@ -36,6 +38,9 @@ const ResetStyles = createGlobalStyle`
     p {
         padding: 0;
         margin: 0;
+        text-align: justify;
+        color: #DB5807; 
+        font-size: medium;
     }
 
     a {
