@@ -2,11 +2,11 @@
 import styled from 'styled-components'
 
 export const Hr = styled.hr`
-  border: 0;
   width: 100%;
+  border: 0;
   margin: 0;
   padding: 0;
-  height: 1px;
+  min-height: 1px;
   background-color: #FFA065;
 `;
 

@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex: 0 0 30%;
   height: 66vh;
-  max-height: 65vh;
+  max-height: 100vh;
   background-color: #FFFFFF;
   border-radius: 32px;
   padding: 20px;

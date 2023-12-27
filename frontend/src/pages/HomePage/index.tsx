@@ -3,6 +3,7 @@ import LightContainer from "../../components/LightContainer"
 import NormalContainer from "../../components/NormalContainer"
 import ButtonForm from "../../components/ButtonForm"
 import { Div, Hr } from "./style"
+import { Link } from "react-router-dom"
 
 export default function HomePage() {
 	return (
@@ -14,7 +15,11 @@ export default function HomePage() {
 				<p>O objetivo principal do MotAccount é facilitar a administração das finanças da Sapatarias Mota, proporcionando uma ferramenta intuitiva e eficaz para o gerenciamento financeiro. Este projeto é parte de um esforço contínuo para melhorar a eficiência operacional e garantir o sucesso contínuo da loja.</p>
 				<Hr />
 				<h1>Entrar no Sistema</h1>
-				<ButtonForm placeholder="Entrar"/>
+				<Div>
+					<Link to="/auth/login">
+						<ButtonForm placeholder="Login" />
+					</Link>
+				</Div>
 			</LightContainer>
 			<NormalContainer>
 				<h1>User Stories</h1>
