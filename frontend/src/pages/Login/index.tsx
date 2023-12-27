@@ -1,28 +1,26 @@
-import PageContainer from "../../components/PageContainer"
-import Header from "../../components/Header"
-import JustifyContainer from "../../components/JustifyContainer"
-import Footer from "../../components/Footer"
-import LoginForm from "../../components/LoginForm"
-import { SetStateAction, useState } from "react"
+import { WhiteContainer } from "./style";
+import InputForm from "../../components/InputForm";
+import ButtonForm from "../../components/ButtonForm";
 
 export default function Login() {
-	const [loginFormData, setLoginFormData] = useState({
-		email: "",
-		senha: ""
-	});
-
-	const updateLoginFormData = (e: { target: { name: any; value: any } }) => {
-		setLoginFormData({...loginFormData, [e.target.name]:e.target.value})
-		console.log(loginFormData)
-	};
-
 	return (
-		<PageContainer>
-			<Header />
-			<JustifyContainer>
-				<LoginForm updateFormData={updateLoginFormData} />
-			</JustifyContainer>
-			<Footer />
-		</PageContainer>
+		<>
+		<WhiteContainer>
+			<h1>Login da MotAccount</h1>
+			<InputForm 
+				placeHolderContainer="Email"
+				name="email" 
+				type="text" 
+				placeholder="Digite seu Email"
+			/>
+			<InputForm 
+				placeHolderContainer="Senha"
+				name="senha" 
+				type="password" 
+				placeholder="Digite sua Senha"
+			/>
+			<ButtonForm placeholder="Entrar" type="submit"/>
+		</WhiteContainer>
+		</>
 	)
 }

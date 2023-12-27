@@ -3,7 +3,8 @@ import logo from '../../assets/logo - transparent.svg?react';
 
 export const Container = styled.div`
   display: flex;
-  height: 10%;
+  width: 100%;
+  height: 4rem;
   background-color: #FF7A00;
   align-items: center;
   justify-content: space-between;
@@ -11,8 +12,7 @@ export const Container = styled.div`
   color: #FFFFFF;
 
   @media (max-width: 768px) {
-    padding: 0 3%;
-    height: 11%;
+    padding: 0 3vw;
   }
 `;
 

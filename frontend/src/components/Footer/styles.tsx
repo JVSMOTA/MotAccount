@@ -3,19 +3,11 @@ import logo from '../../assets/logo - orange.svg?react'
 
 export const Container = styled.div`
   display: flex;
-  height: 20%;
-  position: fixed;
-  bottom: 0;
+  height: 6rem;
   width: 100%;
-  justify-content: space-evenly;
+  gap: 5vh;
   flex-direction: column;
   align-items: center;
-  padding: 0 1.5vw;
-
-  @media (max-width: 768px) {
-    padding: 0 3%;
-    height: 20%;
-  }
 `;
 
 export const Hr = styled.hr`
@@ -23,6 +15,7 @@ export const Hr = styled.hr`
   width: 74%;
   height: 1px;
   background-color: #FFA065;
+  margin: 0;
 
   @media (max-width: 768px) {
     width: 90vw;
