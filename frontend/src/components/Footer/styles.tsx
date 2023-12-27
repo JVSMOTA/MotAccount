@@ -3,18 +3,20 @@ import logo from '../../assets/logo - orange.svg?react'
 
 export const Container = styled.div`
   display: flex;
-  height: 20%;
-  position: fixed;
-  bottom: 0;
+  height: 6rem;
   width: 100%;
-  justify-content: space-evenly;
+  gap: 5vh;
   flex-direction: column;
   align-items: center;
-  padding: 0 1.5vw;
-
+  
   @media (max-width: 768px) {
-    padding: 0 3%;
-    height: 20%;
+    margin-bottom: 50px;
+    gap: 3vh;
+    
+    hr {
+      height: 20px;
+    }
+    
   }
 `;
 
@@ -23,11 +25,11 @@ export const Hr = styled.hr`
   width: 74%;
   height: 1px;
   background-color: #FFA065;
+  margin: 0;
 
   @media (max-width: 768px) {
-    width: 90vw;
-    height: 1px;
-
+    width: 90%;
+    min-height: 1px;
   }
 
 `; 
@@ -41,7 +43,7 @@ export const NavLinksContainer = styled.div`
   font-size: small;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 10px;
   }
 `;
