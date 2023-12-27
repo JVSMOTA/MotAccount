@@ -1,7 +1,7 @@
 
 import { Container } from "./styles"
 
-export default function PageContainer({children}:any) {
+export default function DoubleContainer({children}:any) {
   return (
     <Container>
       {children}

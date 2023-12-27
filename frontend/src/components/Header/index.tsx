@@ -1,12 +1,12 @@
 
-import { Container, Link, Logo, LogoContainer, NavLinksContainer } from "./styles"
+import { Container, Link, Logo, LogoContainer, NavLinksContainer, TituloLogo } from "./styles"
 
 export default function Header() {
   return (
     <Container>
       <LogoContainer href="/">
         <Logo /> 
-        <p>MotAcoount</p>
+        <TituloLogo>MotAcoount</TituloLogo>
       </LogoContainer>
       <NavLinksContainer>
         <Link href="/about">Sobre</Link>

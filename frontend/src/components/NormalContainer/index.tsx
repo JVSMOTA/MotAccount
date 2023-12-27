@@ -1,7 +1,7 @@
 
 import { Container } from "./styles"
 
-export default function FormContainer({children}:any) {
+export default function NormalContainer({children}:any) {
   return (
     <Container>
       {children}
