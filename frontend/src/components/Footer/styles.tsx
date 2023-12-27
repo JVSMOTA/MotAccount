@@ -8,6 +8,16 @@ export const Container = styled.div`
   gap: 5vh;
   flex-direction: column;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    margin-bottom: 50px;
+    gap: 3vh;
+    
+    hr {
+      height: 20px;
+    }
+    
+  }
 `;
 
 export const Hr = styled.hr`
@@ -18,9 +28,8 @@ export const Hr = styled.hr`
   margin: 0;
 
   @media (max-width: 768px) {
-    width: 90vw;
-    height: 1px;
-
+    width: 90%;
+    min-height: 1px;
   }
 
 `; 
