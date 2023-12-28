@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const Label = styled.label`
+export const Div = styled.div`
   display: flex;
   color: #DB5807;
   font-weight: bold;

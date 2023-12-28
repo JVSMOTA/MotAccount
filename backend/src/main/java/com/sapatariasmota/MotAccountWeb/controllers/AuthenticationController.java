@@ -33,7 +33,7 @@ public class AuthenticationController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDto data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());

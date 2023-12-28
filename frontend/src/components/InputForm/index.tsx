@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, ContainerInput, Input, Label } from './styles';
+import { Container, ContainerInput, Div, Input} from './styles';
 
 
 interface Props {
-  name: string
+  name?: string
   type?: string;
   placeHolderContainer: string;
   placeholder?: string;
@@ -11,20 +11,23 @@ interface Props {
   onChange?: any;
   value?: any;
   required?: any;
+  autoComplete?: any;
 }
 
 const InputForm: React.FC<Props> = (props) => {
   return (
     <Container>
-      <Label htmlFor="">{props.placeHolderContainer}</Label>
+      <Div>{props.placeHolderContainer}</Div>
       <ContainerInput>
         <Input
+          name={props.name}
           onChange={props.onChange}
           type={props.type}
           placeholder={props.placeholder}
           disabled={props.disabled}
           value={props.value}
           required={props.required}
+          autoComplete={props.autoComplete}
         />
       </ContainerInput>
     </Container>

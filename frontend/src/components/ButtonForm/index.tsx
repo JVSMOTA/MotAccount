@@ -9,7 +9,7 @@ interface Props {
 
 const ButtonForm: React.FC<Props> = (props) => {
   return (
-    <Container>
+    <Container onClick={props.onClick} type={props.type}>
       {props.placeholder}
     </Container>
   )
