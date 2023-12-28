@@ -16,7 +16,7 @@ export default function Login() {
 		})
 	}
 
-	const handleForm = async (event: { preventDefault: () => string; }) => {
+	const handleForm = async (event: { preventDefault: () => any; }) => {
 		try {
 		  event.preventDefault();
 		  const response = await fetch('http://localhost:8080/auth/login', {
@@ -37,7 +37,7 @@ export default function Login() {
 
 	return (
 		<>
-		<WhiteContainer>
+		<WhiteContainer method="POST" onSubmit={handleForm}>
 			<h1>Login da MotAccount</h1>
 			<InputForm 
 				placeHolderContainer="Email"
@@ -55,7 +55,7 @@ export default function Login() {
 				placeholder="Digite sua Senha"
 				onChange={(e: { target: { value: any; }; }) => {handleFormEdit(e, 'senha')}}
 			/>
-			<ButtonForm placeholder="Entrar" type="submit" onClick={handleForm}/>
+			<ButtonForm placeholder="Entrar" type="submit"/>
 		</WhiteContainer>
 		</>
 	)
