@@ -10,6 +10,7 @@ interface Props {
   disabled?: boolean;
   onChange?: any;
   value?: any;
+  required?: any;
 }
 
 const InputForm: React.FC<Props> = (props) => {
@@ -23,6 +24,7 @@ const InputForm: React.FC<Props> = (props) => {
           placeholder={props.placeholder}
           disabled={props.disabled}
           value={props.value}
+          required={props.required}
         />
       </ContainerInput>
     </Container>
