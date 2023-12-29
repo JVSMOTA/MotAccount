@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     @Autowired
@@ -33,7 +33,8 @@ public class AuthenticationController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDto data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
@@ -43,6 +44,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(new LoginResponseDto(token));
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDto data) {
         if (this.usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
