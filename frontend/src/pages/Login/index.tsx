@@ -1,13 +1,16 @@
-import { WhiteContainer } from "./style";
-import InputForm from "../../components/InputForm";
-import ButtonForm from "../../components/ButtonForm";
-import { useState } from "react";
+import { WhiteContainer } from "./style"
+import InputForm from "../../components/InputForm"
+import ButtonForm from "../../components/ButtonForm"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Login() {
 	const [loginFormData, setLoginFormData] = useState({
 		email: '',
 		senha: ''
 	})
+
+	const navigate = useNavigate()
 
 	const handleFormEdit = (event: { target: { value: any; }; }, name: any) => {
 		setLoginFormData({
@@ -26,15 +29,24 @@ export default function Login() {
 			  'Content-Type': 'application/json',
 			},
 		  });
-	
+	  
 		  const json = await response.json();
-		  console.log(response.status);
-		  console.log(json);
-		} catch (error) {
-		  console.error('Erro durante o login:', error);
-		}
-	  }
+	  
+		  if (response.status !== 200) {
+			Object.values(json).join(', ').split(', ').map((err) => (
+				console.error(err)
+			))
+		  } else {
+			localStorage.setItem('token', json.token)	
+			navigate("/menuLojas")		
+			console.log(json)
 
+		  }
+	
+		} catch (error) {
+		  console.error(error);
+		}
+	  };
 	return (
 		<>
 		<WhiteContainer method="POST" onSubmit={handleForm}>

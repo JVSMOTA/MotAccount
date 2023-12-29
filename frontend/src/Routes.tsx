@@ -15,7 +15,7 @@ export default function AppRoutes() {
 				<Route path="/auth/login" element={<Login />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/menuLojas" element={<MenuLojas />} />
-				<Route path="/menuPrincipal" element={<MenuPrincipal />} />
+				<Route path="/menuPrincipal/:id" element={<MenuPrincipal />} />
 			</Routes>
 		</BrowserRouter>
 	)

@@ -1,12 +1,16 @@
-import styled from "styled-components"
 
-export const Title = styled.h1`
-    text-align: center;
-    color: #DB5807;
+import styled from 'styled-components'
+
+export const Hr = styled.hr`
+  width: 100%;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-height: 1px;
+  background-color: #FFA065;
 `;
 
-export const P = styled.p`
-    text-align: justify;
-    color: #DB5807; 
-    font-size: medium;
+export const Div = styled.div`
+  width: 100%;
+  align-items: center;
 `;
