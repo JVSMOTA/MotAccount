@@ -3,6 +3,7 @@ import InputForm from "../../components/InputForm"
 import ButtonForm from "../../components/ButtonForm"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Cookies from "js-cookie"
 
 export default function Login() {
 	const [loginFormData, setLoginFormData] = useState({
@@ -37,10 +38,8 @@ export default function Login() {
 				console.error(err)
 			))
 		  } else {
-			localStorage.setItem('token', json.token)	
-			navigate("/menuLojas")		
-			console.log(json)
-
+			Cookies.set('token', json.token, { expires: 1 })
+			navigate("/menuLojas")
 		  }
 	
 		} catch (error) {
