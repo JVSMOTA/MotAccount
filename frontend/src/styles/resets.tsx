@@ -27,6 +27,8 @@ const ResetStyles = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-size: large;
+        text-align: center;
+        color: #B84A07;
     }
 
     h3 {
