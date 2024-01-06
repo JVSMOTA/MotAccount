@@ -1,5 +1,3 @@
-
-import Header from "./components/Header"
 import Footer from "./components/Footer"
 import JustifyContainer from "./components/JustifyContainer";
 import AppRoutes from "./Routes"
@@ -17,7 +15,6 @@ const Div = styled.div`
 export default function App() {
 	return (
 		<Div>
-			<Header />
 			<JustifyContainer>
 				<AppRoutes />
 			</JustifyContainer>

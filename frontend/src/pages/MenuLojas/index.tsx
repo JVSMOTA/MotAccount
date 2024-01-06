@@ -3,6 +3,7 @@ import ButtonForm from "../../components/ButtonForm";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import Header from "../../components/Header";
 
 export default function MenuLojas() {
   const [lojas, setLojas] = useState([]);
@@ -34,18 +35,21 @@ export default function MenuLojas() {
 
   return (
     <>
-	<WhiteContainer>
-    <Title>Acessar a Loja</Title>
-    {lojas.map((obj: {[x: string]: any; nome: string | undefined }) => (
-		<div key={obj.nome} style={{width:'100%'}}>
-			<Link style={{borderRadius:'23px'}}
-          		to={`/menuPrincipal/${Object.values(obj.links[0].href).join("").split(", ")[0].split("http://localhost:8080/lojas/")[1]}`}
-        	>
-				<ButtonForm placeholder={obj.nome}/>
-			</Link>
-		</div>
-      ))}	
-	</WhiteContainer>
+    <Header />
+      <>
+      <WhiteContainer>
+        <Title>Acessar a Loja</Title>
+        {lojas.map((obj: {[x: string]: any; nome: string | undefined }) => (
+        <div key={obj.nome} style={{width:'100%'}}>
+          <Link style={{borderRadius:'23px'}}
+                  to={`/menuPrincipal/${Object.values(obj.links[0].href).join("").split(", ")[0].split("http://localhost:8080/lojas/")[1]}`}
+              >
+            <ButtonForm placeholder={obj.nome}/>
+          </Link>
+        </div>
+          ))}	
+      </WhiteContainer>
+      </>
     </>
   );
 }

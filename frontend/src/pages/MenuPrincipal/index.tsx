@@ -9,6 +9,7 @@ import ButtonForm from "../../components/ButtonForm";
 import ButtonAmmount from "../../components/ButtonAmmount";
 import ButtonExpenses from "../../components/ButtonExpenses";
 import ButtonSchedules from "../../components/ButtonSchedules";
+import Header from "../../components/Header";
 
 interface Loja {
   nome: string;
@@ -55,22 +56,25 @@ export default function MenuPrincipal() {
 
   return (
     <>
-      <DoubleContainer>
-        <LightContainer>
-          <h1>{loja?.nome}</h1>
-		  <Hr></Hr>
-		  <h2>{nomeDiaSemana}</h2>
-		  <h2>{dataFormatada}</h2>
-		  <Hr></Hr>
-		  <ButtonForm placeholder="Alterar apurado do dia"></ButtonForm>
-		  <ButtonAmmount placeholder="Apurados" />
-		  <ButtonExpenses placeholder="Agendamentos" />
-		  <ButtonSchedules placeholder="Despesas" />
-        </LightContainer>
-        <NormalContainer>
-          {/* Adicione outros componentes conforme necessário */}
-        </NormalContainer>
-      </DoubleContainer>
+    <Header />
+      <>
+        <DoubleContainer>
+          <LightContainer>
+            <h1>{loja?.nome}</h1>
+        <Hr></Hr>
+        <h2>{nomeDiaSemana}</h2>
+        <h2>{dataFormatada}</h2>
+        <Hr></Hr>
+        <ButtonForm placeholder="Alterar apurado do dia"></ButtonForm>
+        <ButtonAmmount placeholder="Apurados" />
+        <ButtonExpenses placeholder="Agendamentos" />
+        <ButtonSchedules placeholder="Despesas" />
+          </LightContainer>
+          <NormalContainer>
+            {/* Adicione outros componentes conforme necessário */}
+          </NormalContainer>
+        </DoubleContainer>
+      </>
     </>
   );
 }
