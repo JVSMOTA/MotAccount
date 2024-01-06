@@ -45,7 +45,7 @@ export const NavLinksContainer = styled.div`
   gap: 1vw;
 `;
 
-export const Link = styled.a`
+export const LinkComponent = styled.a`
   font-size: 1rem;
   font-weight: 600;
 

@@ -1,5 +1,5 @@
 
-import { Container, Link, Logo, LogoContainer, NavLinksContainer, TituloLogo } from "./styles"
+import { Container, LinkComponent, Logo, LogoContainer, NavLinksContainer, TituloLogo } from "./styles"
 
 export default function Header() {
   return (
@@ -9,8 +9,8 @@ export default function Header() {
         <TituloLogo>MotAcoount</TituloLogo>
       </LogoContainer>
       <NavLinksContainer>
-        <Link href="/about">Sobre</Link>
-        <Link href="/auth/login">Login</Link>
+        <LinkComponent href="/about">Sobre</LinkComponent>
+        <LinkComponent href="/auth/login">Login</LinkComponent>
       </NavLinksContainer>
     </Container>
   )
