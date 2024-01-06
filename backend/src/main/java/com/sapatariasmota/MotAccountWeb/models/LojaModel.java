@@ -2,6 +2,8 @@ package com.sapatariasmota.MotAccountWeb.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "TB_LOJAS")
 public class LojaModel extends RepresentationModel<LojaModel> implements Serializable {

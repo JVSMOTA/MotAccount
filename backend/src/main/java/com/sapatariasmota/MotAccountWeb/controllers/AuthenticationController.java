@@ -35,7 +35,7 @@ public class AuthenticationController {
 
     @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDto data) {
+    public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDto data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
@@ -46,7 +46,7 @@ public class AuthenticationController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDto data) {
+    public ResponseEntity<?> register(@RequestBody @Valid RegisterDto data) {
         if (this.usuarioRepository.findByEmail(data.email()) != null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
