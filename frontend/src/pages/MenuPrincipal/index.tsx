@@ -4,15 +4,18 @@ import LightContainer from "../../components/LightContainer";
 import NormalContainer from "../../components/NormalContainer";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { Hr } from "./style";
+import { Hr, LightProfileContainer, ProfileContainer } from "./style";
 import ButtonForm from "../../components/ButtonForm";
 import ButtonAmmount from "../../components/ButtonAmmount";
 import ButtonExpenses from "../../components/ButtonExpenses";
 import ButtonSchedules from "../../components/ButtonSchedules";
 import Header from "../../components/Header";
+import InputForm from "../../components/InputForm";
 
 interface Loja {
   nome: string;
+  tipo: string;
+  endereco: string;
 }
 
 export default function MenuPrincipal() {
@@ -71,7 +74,17 @@ export default function MenuPrincipal() {
             <ButtonSchedules placeholder="Despesas" />
           </LightContainer>
           <NormalContainer>
-            {/* Adicione outros componentes conforme necessário */}
+            <ProfileContainer>
+              <LightProfileContainer>
+                <InputForm placeHolderContainer={"Nome"} placeholder={loja?.nome}></InputForm>
+              </LightProfileContainer>
+              <LightProfileContainer>
+                <InputForm placeHolderContainer={"Tipo"} placeholder={loja?.tipo}></InputForm>
+              </LightProfileContainer>
+              <InputForm placeHolderContainer={"Endereço"} placeholder={loja?.endereco}></InputForm>
+            </ProfileContainer>
+            <Hr></Hr>
+            <h1>Agendamentos do Dia</h1>
           </NormalContainer>
         </DoubleContainer>
       </>

@@ -14,3 +14,16 @@ export const Div = styled.div`
   width: 100%;
   align-items: center;
 `;
+
+export const ProfileContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2%;
+  margin-bottom: 20px;
+`;
+
+export const LightProfileContainer = styled.div`
+  display: flex;
+  flex: 0 0 49%;
+`;
