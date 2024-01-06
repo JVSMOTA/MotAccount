@@ -50,7 +50,7 @@ export default function Login() {
 	return (
 	<>
 		<Header />
-		<>
+		<div style={{display:'flex', height:'75vh', width:'100vw', justifyContent:'center', alignContent:'center'}}>
 		<WhiteContainer method="POST" onSubmit={handleForm}>
 			<h1>Login da MotAccount</h1>
 			<InputForm 
@@ -71,7 +71,7 @@ export default function Login() {
 			/>
 			<ButtonForm placeholder="Entrar" type="submit"/>
 		</WhiteContainer>
-		</>
+		</div>
 	</>
 	)
 }
