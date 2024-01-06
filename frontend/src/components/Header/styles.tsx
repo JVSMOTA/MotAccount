@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import logo from '../../assets/logo - transparent.svg?react';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -16,10 +17,9 @@ export const Container = styled.div`
   }
 `;
 
-export const LogoContainer = styled.a`
+export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1vw;
   font-size: 1rem;
   font-weight: 600;
 
@@ -45,13 +45,25 @@ export const NavLinksContainer = styled.div`
   gap: 1vw;
 `;
 
-export const Link = styled.a`
+export const LinkComponent = styled(NavLink)`
   font-size: 1rem;
   font-weight: 600;
-
+  
   &:hover,
   &:active {
     cursor: pointer;
     opacity: 0.8;
   }
+
+  &.logoContainer {
+    display: flex;
+    gap: 10px;
+  }
+
+  span {
+    &.activated {
+      border-bottom: 2px solid white;
+    }
+  }
+
 `;
