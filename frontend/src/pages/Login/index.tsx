@@ -4,6 +4,7 @@ import ButtonForm from "../../components/ButtonForm"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
+import Header from "../../components/Header"
 
 export default function Login() {
 	const [loginFormData, setLoginFormData] = useState({
@@ -47,6 +48,8 @@ export default function Login() {
 		}
 	  };
 	return (
+	<>
+		<Header />
 		<>
 		<WhiteContainer method="POST" onSubmit={handleForm}>
 			<h1>Login da MotAccount</h1>
@@ -69,5 +72,6 @@ export default function Login() {
 			<ButtonForm placeholder="Entrar" type="submit"/>
 		</WhiteContainer>
 		</>
+	</>
 	)
 }
