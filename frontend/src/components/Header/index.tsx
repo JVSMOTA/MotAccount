@@ -1,5 +1,5 @@
-import { Container, Link, Logo, LogoContainer, NavLinksContainer, TituloLogo } from "./styles"
-import { useLocation } from 'react-router-dom';
+import { Container, LinkComponent, Logo, LogoContainer, NavLinksContainer, TituloLogo } from "./styles"
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
   const location = useLocation();
@@ -9,8 +9,12 @@ export default function Header() {
     if (location.pathname === '/menuLojas') {
       return (
         <>
-          <Link href="/menuLojas">Menu Lojas</Link>
-          <Link href="/">Sair</Link>
+          <LinkComponent>
+            <Link to={"/menuLojas"}>Menu Lojas</Link>
+          </LinkComponent>
+          <LinkComponent>
+            <Link to={"/"}>Sair</Link>
+          </LinkComponent>
         </>
       );
     } else if (location.pathname.startsWith('/menuPrincipal/')) {
@@ -18,17 +22,27 @@ export default function Header() {
       const id = location.pathname.split('/').pop();
       return (
         <>
-          <Link href="/menuLojas">Menu Lojas</Link>
-          <Link href={`/menuPrincipal/${id}`}>Menu Principal</Link>
-          <Link href="/">Sair</Link>
+          <LinkComponent>
+            <Link to={"/menuLojas"}>Menu Lojas</Link>
+          </LinkComponent>
+          <LinkComponent>
+            <Link to={`/menuPrincipal/${id}`}>Menu Principal</Link>
+          </LinkComponent>
+          <LinkComponent>
+            <Link to={"/"}>Sair</Link>
+          </LinkComponent>
         </>
       );
     } else {
       // Caso padrão para outras páginas
       return (
         <>
-          <Link href="/about">Sobre</Link>
-          <Link href="/auth/login">Login</Link>
+          <LinkComponent>
+            <Link to={"/about"}>Sobre</Link>
+          </LinkComponent>
+          <LinkComponent>
+            <Link to={"/auth/login"}>Login</Link>
+          </LinkComponent>
         </>
       );
     }
@@ -36,9 +50,11 @@ export default function Header() {
 
   return (
     <Container>
-      <LogoContainer href="/">
-        <Logo /> 
-        <TituloLogo>MotAcoount</TituloLogo>
+      <LogoContainer >
+        <Link to={"/"} style={{display:"flex", gap:"10px"}}>
+          <Logo /> 
+          <TituloLogo>MotAcoount</TituloLogo>
+        </Link>
       </LogoContainer>
       <NavLinksContainer>
         {renderLinks()}

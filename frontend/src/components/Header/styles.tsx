@@ -16,10 +16,9 @@ export const Container = styled.div`
   }
 `;
 
-export const LogoContainer = styled.a`
+export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1vw;
   font-size: 1rem;
   font-weight: 600;
 
@@ -45,7 +44,7 @@ export const NavLinksContainer = styled.div`
   gap: 1vw;
 `;
 
-export const Link = styled.a`
+export const LinkComponent = styled.div`
   font-size: 1rem;
   font-weight: 600;
 
