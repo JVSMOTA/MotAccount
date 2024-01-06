@@ -36,7 +36,7 @@ export default function MenuLojas() {
   return (
     <>
     <Header />
-      <>
+  		<div style={{display:'flex', height:'75vh', width:'100vw', justifyContent:'center', alignContent:'center'}}>
       <WhiteContainer>
         <Title>Acessar a Loja</Title>
         {lojas.map((obj: {[x: string]: any; nome: string | undefined }) => (
@@ -49,7 +49,7 @@ export default function MenuLojas() {
         </div>
           ))}	
       </WhiteContainer>
-      </>
+      </div>
     </>
   );
 }
