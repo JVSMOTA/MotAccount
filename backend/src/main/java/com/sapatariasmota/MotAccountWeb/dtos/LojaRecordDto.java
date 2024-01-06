@@ -1,7 +1,6 @@
 package com.sapatariasmota.MotAccountWeb.dtos;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public record LojaRecordDto(
         @NotBlank(message = "O atributo nome é obrigatório!")
