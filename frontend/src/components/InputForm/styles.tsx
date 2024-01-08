@@ -44,7 +44,6 @@ export const Input = styled.input`
   }
 
   &:disabled {
-    background-color: inherit;
   }
 
   &::placeholder {

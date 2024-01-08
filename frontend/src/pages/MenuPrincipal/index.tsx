@@ -76,15 +76,15 @@ export default function MenuPrincipal() {
           <NormalContainer>
             <ProfileContainer>
               <LightProfileContainer>
-                <InputForm placeHolderContainer={"Nome"} placeholder={loja?.nome}></InputForm>
+                <InputForm placeHolderContainer={"Nome"} placeholder={loja?.nome} disabled></InputForm>
               </LightProfileContainer>
               <LightProfileContainer>
-                <InputForm placeHolderContainer={"Tipo"} placeholder={loja?.tipo}></InputForm>
+                <InputForm placeHolderContainer={"Tipo"} placeholder={loja?.tipo} disabled></InputForm>
               </LightProfileContainer>
-              <InputForm placeHolderContainer={"Endereço"} placeholder={loja?.endereco}></InputForm>
+              <InputForm placeHolderContainer={"Endereço"} placeholder={loja?.endereco} disabled></InputForm>
             </ProfileContainer>
-            <Hr></Hr>
-            <h1>Agendamentos do Dia</h1>
+            <Hr style={{marginBottom:"20px"}} />
+            <h1 style={{textAlign:"left"}} >Agendamentos do Dia</h1>
           </NormalContainer>
         </DoubleContainer>
       </>
