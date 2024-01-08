@@ -20,13 +20,22 @@ export const WhiteContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-    text-align: center;
-    color: #DB5807;
+  text-align: center;
+  color: #DB5807;
 `;
 
 export const P = styled.p`
-    text-align: justify;
-    color: #DB5807; 
-    font-size: medium;
+  text-align: justify;
+  color: #DB5807; 
+  font-size: medium;
+`;
+
+export const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+  gap: 10px;
 `;
 

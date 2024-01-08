@@ -12,7 +12,6 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
 
   @media (max-width: 1158px) {
     min-width: fit-content;

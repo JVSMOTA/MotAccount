@@ -4,15 +4,20 @@ import LightContainer from "../../components/LightContainer";
 import NormalContainer from "../../components/NormalContainer";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { Hr } from "./style";
+import { Hr, LightProfileContainer, ProfileContainer } from "./style";
 import ButtonForm from "../../components/ButtonForm";
 import ButtonAmmount from "../../components/ButtonAmmount";
 import ButtonExpenses from "../../components/ButtonExpenses";
 import ButtonSchedules from "../../components/ButtonSchedules";
 import Header from "../../components/Header";
+import InputForm from "../../components/InputForm";
+import DataAmmountCell from "../../components/DataAmmountCell";
+import DataSchedulesCell from "../../components/DataSchedulesCell";
 
 interface Loja {
   nome: string;
+  tipo: string;
+  endereco: string;
 }
 
 export default function MenuPrincipal() {
@@ -61,17 +66,31 @@ export default function MenuPrincipal() {
         <DoubleContainer>
           <LightContainer>
             <h1>{loja?.nome}</h1>
-            <Hr></Hr>
-            <h2>{nomeDiaSemana}</h2>
-            <h2>{dataFormatada}</h2>
-            <Hr></Hr>
+            <div style={{width:"100%"}}>
+              <Hr style={{marginBottom:"5px"}}/>
+              <h2 style={{marginBottom:"0"}}>{nomeDiaSemana}</h2>
+              <h2 style={{marginBottom:"5px"}}>{dataFormatada}</h2>
+              <Hr />
+            </div>
+            <DataAmmountCell date={data} fisico={0} cartao={0} displayDate={false}/>
             <ButtonForm placeholder="Alterar apurado do dia"></ButtonForm>
             <ButtonAmmount placeholder="Apurados" />
             <ButtonExpenses placeholder="Agendamentos" />
             <ButtonSchedules placeholder="Despesas" />
           </LightContainer>
           <NormalContainer>
-            {/* Adicione outros componentes conforme necessário */}
+            <ProfileContainer>
+              <LightProfileContainer>
+                <InputForm placeHolderContainer={"Nome"} placeholder={loja?.nome} disabled></InputForm>
+              </LightProfileContainer>
+              <LightProfileContainer>
+                <InputForm placeHolderContainer={"Tipo"} placeholder={loja?.tipo} disabled></InputForm>
+              </LightProfileContainer>
+              <InputForm placeHolderContainer={"Endereço"} placeholder={loja?.endereco} disabled></InputForm>
+            </ProfileContainer>
+            <Hr style={{marginBottom:"20px"}} />
+            <h1 style={{textAlign:"left"}} >Agendamentos do Dia</h1>
+            <DataSchedulesCell date={data} displayDate={false} razao={"Energisa"} valor={75}/>
           </NormalContainer>
         </DoubleContainer>
       </>
