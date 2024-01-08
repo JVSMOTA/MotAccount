@@ -71,7 +71,7 @@ export default function MenuPrincipal() {
               <h2 style={{marginBottom:"5px"}}>{dataFormatada}</h2>
               <Hr />
             </div>
-            <DataCell /*date={data}*/ fisico={0} cartao={0} />
+            <DataCell date={data} fisico={0} cartao={0} displayDate={true}/>
             <ButtonForm placeholder="Alterar apurado do dia"></ButtonForm>
             <ButtonAmmount placeholder="Apurados" />
             <ButtonExpenses placeholder="Agendamentos" />
