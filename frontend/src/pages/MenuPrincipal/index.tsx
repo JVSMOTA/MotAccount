@@ -11,6 +11,7 @@ import ButtonExpenses from "../../components/ButtonExpenses";
 import ButtonSchedules from "../../components/ButtonSchedules";
 import Header from "../../components/Header";
 import InputForm from "../../components/InputForm";
+import DataCell from "../../components/DataCell";
 
 interface Loja {
   nome: string;
@@ -64,10 +65,13 @@ export default function MenuPrincipal() {
         <DoubleContainer>
           <LightContainer>
             <h1>{loja?.nome}</h1>
-            <Hr></Hr>
-            <h2>{nomeDiaSemana}</h2>
-            <h2>{dataFormatada}</h2>
-            <Hr></Hr>
+            <div style={{width:"100%"}}>
+              <Hr style={{marginBottom:"5px"}}/>
+              <h2 style={{marginBottom:"0"}}>{nomeDiaSemana}</h2>
+              <h2 style={{marginBottom:"5px"}}>{dataFormatada}</h2>
+              <Hr />
+            </div>
+            <DataCell /*date={data}*/ fisico={0} cartao={0} />
             <ButtonForm placeholder="Alterar apurado do dia"></ButtonForm>
             <ButtonAmmount placeholder="Apurados" />
             <ButtonExpenses placeholder="Agendamentos" />
