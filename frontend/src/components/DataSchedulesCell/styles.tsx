@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.label`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   width: 100%;
   gap: 2px;
+`;
+
+export const InputBox = styled.input.attrs({ type: 'checkbox' })`
 `;
 
 export const Div = styled.div`
@@ -15,16 +18,6 @@ export const Div = styled.div`
   font-weight: bold;
   font-size: 1vh;
   padding: 0 10px;
-`;
-
-export const ContainerData = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 9px;
-  gap: 2px;
-  border-radius: 5px;
-  border: 1px solid #DB5605;
 `;
 
 export const Data = styled.div`
