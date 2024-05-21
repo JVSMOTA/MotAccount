@@ -4,7 +4,7 @@ import LightContainer from "../../components/LightContainer";
 import NormalContainer from "../../components/NormalContainer";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { Hr, LightProfileContainer, ProfileContainer } from "./style";
+import { ContainerData, Hr, LightProfileContainer, ProfileContainer } from "./style";
 import ButtonForm from "../../components/ButtonForm";
 import ButtonAmmount from "../../components/ButtonAmmount";
 import ButtonExpenses from "../../components/ButtonExpenses";
@@ -90,7 +90,9 @@ export default function MenuPrincipal() {
             </ProfileContainer>
             <Hr style={{marginBottom:"20px"}} />
             <h1 style={{textAlign:"left"}} >Agendamentos do Dia</h1>
-            <DataSchedulesCell date={data} displayDate={false} razao={"Energisa"} valor={75}/>
+            <ContainerData>
+              <DataSchedulesCell date={data} displayDate={false} razao={"Energisa"} valor={75}/>
+            </ContainerData>
           </NormalContainer>
         </DoubleContainer>
       </>

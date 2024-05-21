@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, ContainerData, Div, Data } from './styles';
+import { Container, Div, Data, InputBox } from './styles';
 
 interface Props {
   date: Date;
@@ -38,9 +38,11 @@ const DataSchedulesCell: React.FC<Props> = (props) => {
   return (
     <Container onChange={props.onChange}>
       {renderDate()}
-      <ContainerData>
-        <Data><p style={{ fontSize: '2vh' }}>{props.razao}</p>{'R$ ' + props.valor.toFixed(2)}</Data>
-      </ContainerData>
+				<InputBox type='checkbox'/>
+        <Data>
+					<p style={{ fontSize: '2vh' }}>{props.razao}</p>
+				  <p style={{ fontSize: '2vh' }}>{'R$ ' + props.valor.toFixed(2)}</p>
+				</Data>
     </Container>
   );
 };

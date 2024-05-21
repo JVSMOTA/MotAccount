@@ -10,6 +10,17 @@ export const Hr = styled.hr`
   background-color: #FFA065;
 `;
 
+export const ContainerData = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 28vh;
+  padding: 9px;
+  gap: 2px;
+  border-radius: 5px;
+  border: 1px solid #DB5605;
+`;
+
 export const Div = styled.div`
   width: 100%;
   align-items: center;
