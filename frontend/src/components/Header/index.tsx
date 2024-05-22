@@ -1,59 +1,76 @@
-import { Container, LinkComponent, Logo, LogoContainer, NavLinksContainer, TituloLogo } from "./styles"
+import { Container, LinkComponent, Logo, LogoContainer, NavLinksContainer, TituloLogo } from "./styles";
 import { useLocation } from 'react-router-dom';
-import Cookies from "js-cookie";
 
 export default function Header() {
   const location = useLocation();
 
+  const handleLogout = () => {
+    // Limpar o token ou quaisquer dados de autenticação
+    localStorage.removeItem('token');
+    // Redirecionar para a página inicial
+    window.location.href = '/';
+  };
+
   // Função para renderizar links com base no caminho atual
   const renderLinks = () => {
-    const handleLogout = () => {
-      // Remove o token de acesso ao clicar em "Sair"
-      Cookies.remove('token');
-    };
-  
     if (location.pathname === '/menuLojas') {
       return (
         <>
-          <LinkComponent to={"/menuLojas"}>
-          {({ isActive }) => (
-            <span className={isActive ? "activated" : ""}>Menu de Lojas</span>
-          )}
+          <LinkComponent to="/menuLojas">
+            {({ isActive }) => (
+              <span className={isActive ? "activated" : ""}>Menu de Lojas</span>
+            )}
           </LinkComponent>
-          <LinkComponent to={"/"} onClick={handleLogout}>Sair</LinkComponent>
+          <LinkComponent to="/" onClick={handleLogout}>Sair</LinkComponent>
         </>
       );
     } else if (location.pathname.startsWith('/menuPrincipal/')) {
       // Extrair o ID da rota "/menuPrincipal/:id"
-      const id = location.pathname.split('/').pop();
-      return (
-        <>
-          <LinkComponent to={"/menuLojas"}>
-          {({ isActive }) => (
-            <span className={isActive ? "activated" : ""}>Menu de Lojas</span>
-          )}
-          </LinkComponent>
-          <LinkComponent to={`/menuPrincipal/${id}`}>
-          {({ isActive }) => (
-            <span className={isActive ? "activated" : ""}>Menu Principal</span>
-          )}
-          </LinkComponent>
-          <LinkComponent to={"/"} onClick={handleLogout}>Sair</LinkComponent>
-        </>
-      );
+      const parts = location.pathname.split('/');
+      const id = parts[2]; // Assumindo que o ID está na terceira posição
+
+      if (location.pathname.endsWith('/apurados')) {
+        return (
+          <>
+            <LinkComponent to="/menuLojas">
+              <span>Menu de Lojas</span>
+            </LinkComponent>
+            <LinkComponent to={`/menuPrincipal/${id}`}>
+              <span>Menu Principal</span>
+            </LinkComponent>
+            <LinkComponent to="/" onClick={handleLogout}>Sair</LinkComponent>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <LinkComponent to="/menuLojas">
+              {({ isActive }) => (
+                <span className={isActive ? "activated" : ""}>Menu de Lojas</span>
+              )}
+            </LinkComponent>
+            <LinkComponent to={`/menuPrincipal/${id}`}>
+              {({ isActive }) => (
+                <span className={isActive ? "activated" : ""}>Menu Principal</span>
+              )}
+            </LinkComponent>
+            <LinkComponent to="/" onClick={handleLogout}>Sair</LinkComponent>
+          </>
+        );
+      }
     } else {
       // Caso padrão para outras páginas
       return (
         <>
-          <LinkComponent to={"/about"}>
-          {({ isActive }) => (
-            <span className={isActive ? "activated" : ""}>Sobre</span>
-          )}
+          <LinkComponent to="/about">
+            {({ isActive }) => (
+              <span className={isActive ? "activated" : ""}>Sobre</span>
+            )}
           </LinkComponent>
-          <LinkComponent to={"/auth/login"}>
-          {({ isActive }) => (
-            <span className={isActive ? "activated" : ""}>Login</span>
-          )}
+          <LinkComponent to="/auth/login">
+            {({ isActive }) => (
+              <span className={isActive ? "activated" : ""}>Login</span>
+            )}
           </LinkComponent>
         </>
       );
@@ -62,10 +79,10 @@ export default function Header() {
 
   return (
     <Container>
-      <LogoContainer >
-        <LinkComponent to={"/"} className="logoContainer">
-          <Logo /> 
-          <TituloLogo>MotAcoount</TituloLogo>
+      <LogoContainer>
+        <LinkComponent to="/" className="logoContainer">
+          <Logo />
+          <TituloLogo>MotAccount</TituloLogo>
         </LinkComponent>
       </LogoContainer>
       <NavLinksContainer>

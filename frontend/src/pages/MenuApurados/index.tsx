@@ -4,15 +4,13 @@ import LightContainer from "../../components/LightContainer";
 import NormalContainer from "../../components/NormalContainer";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { ContainerData, Hr, LightProfileContainer, ProfileContainer } from "./style";
+import { ContainerData, Hr} from "./style";
 import ButtonForm from "../../components/ButtonForm";
 import ButtonAmmount from "../../components/ButtonAmmount";
 import ButtonExpenses from "../../components/ButtonExpenses";
 import ButtonSchedules from "../../components/ButtonSchedules";
 import Header from "../../components/Header";
-import InputForm from "../../components/InputForm";
 import DataAmmountCell from "../../components/DataAmmountCell";
-import DataSchedulesCell from "../../components/DataSchedulesCell";
 
 interface Loja {
   nome: string;
@@ -20,8 +18,9 @@ interface Loja {
   endereco: string;
 }
 
-export default function MenuPrincipal() {
+export default function MenuApurados() {
   const [loja, setLoja] = useState<Loja>()
+  const [apurados, setApurados] = useState([]);
   const navigate = useNavigate()
   const { id } = useParams()
 
@@ -59,6 +58,30 @@ export default function MenuPrincipal() {
     })
   }, [id, navigate])
 
+
+  useEffect(() => {
+    const token = Cookies.get('token')
+
+    if (!token) {
+      navigate('/auth/login')
+      return
+    }
+
+    // Se chegou aqui, há um token, então faça a requisição necessária
+    fetch(`http://localhost:8080/lojas/${id}/apurados`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+    })
+    .then(retorno => retorno.json())
+    .then(retorno_convertido => setApurados(retorno_convertido))
+    .catch(error => {
+      console.error("Erro ao obter apurados:", error);
+    })
+  }, [id, navigate])
+
   return (
     <>
     <Header />
@@ -74,7 +97,7 @@ export default function MenuPrincipal() {
             </div>
             <DataAmmountCell date={data} fisico={0} cartao={0} displayDate={false}/>
             <ButtonForm placeholder="Alterar apurado do dia"></ButtonForm>
-
+            
             <Link style={{borderRadius:'23px', width:'100%'}} 
               to={`/menuPrincipal/${[id]}/apurados`}
               >
@@ -84,19 +107,11 @@ export default function MenuPrincipal() {
             <ButtonSchedules placeholder="Despesas" />
           </LightContainer>
           <NormalContainer>
-            <ProfileContainer>
-              <LightProfileContainer>
-                <InputForm placeHolderContainer={"Nome"} placeholder={loja?.nome} disabled></InputForm>
-              </LightProfileContainer>
-              <LightProfileContainer>
-                <InputForm placeHolderContainer={"Tipo"} placeholder={loja?.tipo} disabled></InputForm>
-              </LightProfileContainer>
-              <InputForm placeHolderContainer={"Endereço"} placeholder={loja?.endereco} disabled></InputForm>
-            </ProfileContainer>
-            <Hr style={{marginBottom:"20px"}} />
-            <h1 style={{textAlign:"left"}} >Agendamentos do Dia</h1>
+            <h1 style={{textAlign:"left"}} >Apurados do Mês</h1>
             <ContainerData>
-              <DataSchedulesCell date={data} displayDate={false} razao={"Energisa"} valor={75}/>
+              {apurados.map((obj: {[x: string]: any; data: string; valor: number }) => (
+                <DataAmmountCell date={new Date(obj.data)} fisico={obj.valor} cartao={0} displayDate={true}/>
+              ))}
             </ContainerData>
           </NormalContainer>
         </DoubleContainer>
