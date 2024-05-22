@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import DoubleContainer from "../../components/DoubleContainer";
 import LightContainer from "../../components/LightContainer";
 import NormalContainer from "../../components/NormalContainer";
@@ -74,7 +74,12 @@ export default function MenuPrincipal() {
             </div>
             <DataAmmountCell date={data} fisico={0} cartao={0} displayDate={false}/>
             <ButtonForm placeholder="Alterar apurado do dia"></ButtonForm>
-            <ButtonAmmount placeholder="Apurados" />
+
+            <Link style={{borderRadius:'23px', width:'100%'}} 
+              to={`/menuPrincipal/${[id]}/apurados`}
+              >
+              <ButtonAmmount placeholder="Apurados" />
+            </Link>
             <ButtonExpenses placeholder="Agendamentos" />
             <ButtonSchedules placeholder="Despesas" />
           </LightContainer>
