@@ -24,12 +24,11 @@ const DataCell: React.FC<Props> = (props) => {
     }
   }
 
-
   const numeroDiaSemana = props.date.getDay();
   const diasDaSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
   const nomeDiaSemana = diasDaSemana[numeroDiaSemana];
 
-  const dia = String(props.date.getDate()).padStart(2, '0');
+  const dia = String(props.date.getDate() + 1).padStart(2, '0'); // Mês começa do zero
   const mes = String(props.date.getMonth() + 1).padStart(2, '0'); // Mês começa do zero, então somamos 1
   const ano = props.date.getFullYear();
 
