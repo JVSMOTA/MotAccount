@@ -6,6 +6,7 @@ import Login from "../src/pages/Login"
 import About from "../src/pages/About"
 import MenuLojas from "./pages/MenuLojas"
 import MenuPrincipal from "../src/pages/MenuPrincipal"
+import MenuApurados from "./pages/MenuApurados"
 
 export default function AppRoutes() {
 	return (
@@ -17,6 +18,7 @@ export default function AppRoutes() {
 				<Route path="/menuLojas" element={<MenuLojas />} />
 				<Route path="/menuPrincipal" element={<MenuPrincipal />} />
 				<Route path="/menuPrincipal/:id" element={<MenuPrincipal />} />
+				<Route path="/menuPrincipal/:id/apurados" element={<MenuApurados />} />
 			</Routes>
 		</BrowserRouter>
 	)
