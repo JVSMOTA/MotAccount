@@ -103,14 +103,18 @@ export default function MenuApurados() {
               >
               <ButtonAmmount placeholder="Apurados" />
             </Link>
-            <ButtonExpenses placeholder="Agendamentos" />
+            <Link style={{borderRadius:'23px', width:'100%'}} 
+              to={`/menuPrincipal/${[id]}/agendamentos`}
+              >
+              <ButtonExpenses placeholder="Agendamentos" />
+            </Link>
             <ButtonSchedules placeholder="Despesas" />
           </LightContainer>
           <NormalContainer>
             <h1 style={{textAlign:"left"}} >Apurados do Mês</h1>
             <ContainerData>
-              {apurados.map((obj: {[x: string]: any; data: string; valor: number }) => (
-                <DataAmmountCell date={new Date(obj.data)} fisico={obj.valor} cartao={0} displayDate={true}/>
+              {apurados.map((obj: {[x: string]: any; data: string; apuradoFisico: number; apuradoCartao: number }) => (
+                <DataAmmountCell date={new Date(obj.data)} fisico={obj.apuradoFisico} cartao={obj.apuradoCartao} displayDate={true}/>
               ))}
             </ContainerData>
           </NormalContainer>

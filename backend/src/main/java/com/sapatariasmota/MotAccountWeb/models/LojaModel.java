@@ -30,4 +30,8 @@ public class LojaModel extends RepresentationModel<LojaModel> implements Seriali
     @JsonIgnore
     private List<ApuradoModel> apurados;
 
+    @OneToMany(mappedBy = "loja")
+    @JsonIgnore
+    private List<AgendamentoModel> agendamentos;
+
 }

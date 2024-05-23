@@ -11,6 +11,13 @@ export default function Header() {
     window.location.href = '/';
   };
 
+  const getLogoLink = () => {
+    if (location.pathname === ('/auth/login') || location.pathname ===  ('/') || location.pathname === ('/about')) {
+      return '/';
+    }
+    return '/menuLojas';
+  };
+
   // Função para renderizar links com base no caminho atual
   const renderLinks = () => {
     if (location.pathname === '/menuLojas') {
@@ -29,7 +36,7 @@ export default function Header() {
       const parts = location.pathname.split('/');
       const id = parts[2]; // Assumindo que o ID está na terceira posição
 
-      if (location.pathname.endsWith('/apurados')) {
+      if (location.pathname.endsWith('/apurados') || location.pathname.endsWith('/agendamentos') || location.pathname.endsWith('/despesas')) {
         return (
           <>
             <LinkComponent to="/menuLojas">
@@ -80,7 +87,7 @@ export default function Header() {
   return (
     <Container>
       <LogoContainer>
-        <LinkComponent to="/" className="logoContainer">
+        <LinkComponent to={getLogoLink()} className="logoContainer">
           <Logo />
           <TituloLogo>MotAccount</TituloLogo>
         </LinkComponent>

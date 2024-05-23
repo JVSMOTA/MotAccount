@@ -10,12 +10,12 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "TB_APURADOS")
-public class ApuradoModel {
+@Table(name = "TB_AGENDAMENTO")
+public class AgendamentoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idApurado;
+    private UUID idAgendamento;
 
     @ManyToOne
     @JsonIgnore
@@ -23,8 +23,8 @@ public class ApuradoModel {
     private LojaModel loja;
 
     private LocalDate data;
-    private BigDecimal apuradoFisico;
-    private BigDecimal apuradoCartao;
+    private BigDecimal valor;
+    private String discriminacao;
 
 
 }

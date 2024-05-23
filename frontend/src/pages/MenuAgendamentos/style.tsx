@@ -14,12 +14,12 @@ export const ContainerData = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 28vh;
+  height: 53vh;
   padding: 9px;
   padding-right: 5px;
   gap: 2px;
   border-radius: 5px;
-  border: 1px solid #DB5605;
+  border: 1px solid #fab88f;
   overflow: hidden;
   overflow-y: scroll;
 
@@ -51,10 +51,5 @@ export const ProfileContainer = styled.div`
 
 export const LightProfileContainer = styled.div`
   display: flex;
-  min-width: 49%;
-
-  @media (max-width: 1158px) {
-    width: 100%;
-  }
-
+  flex: 0 0 49%;
 `;
