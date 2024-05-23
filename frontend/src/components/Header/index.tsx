@@ -11,6 +11,13 @@ export default function Header() {
     window.location.href = '/';
   };
 
+  const getLogoLink = () => {
+    if (location.pathname === ('/auth/login') || location.pathname ===  ('/') || location.pathname === ('/about')) {
+      return '/';
+    }
+    return '/menuLojas';
+  };
+
   // Função para renderizar links com base no caminho atual
   const renderLinks = () => {
     if (location.pathname === '/menuLojas') {
@@ -80,7 +87,7 @@ export default function Header() {
   return (
     <Container>
       <LogoContainer>
-        <LinkComponent to="/" className="logoContainer">
+        <LinkComponent to={getLogoLink()} className="logoContainer">
           <Logo />
           <TituloLogo>MotAccount</TituloLogo>
         </LinkComponent>
