@@ -22,6 +22,7 @@ interface Loja {
 
 export default function MenuPrincipal() {
   const [loja, setLoja] = useState<Loja>()
+  const [agendamentos, setAgendamentos] = useState([]);
   const navigate = useNavigate()
   const { id } = useParams()
 
@@ -58,6 +59,30 @@ export default function MenuPrincipal() {
       console.error("Erro ao obter loja:", error);
     })
   }, [id, navigate])
+
+  useEffect(() => {
+    const token = Cookies.get('token')
+
+    if (!token) {
+      navigate('/auth/login')
+      return
+    }
+
+    // Se chegou aqui, há um token, então faça a requisição necessária
+    fetch(`http://localhost:8080/lojas/${id}/agendamentos`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+    })
+    .then(retorno => retorno.json())
+    .then(retorno_convertido => setAgendamentos(retorno_convertido))
+    .catch(error => {
+      console.error("Erro ao obter agendamentos:", error);
+    })
+  }, [id, navigate])
+
 
   return (
     <>
@@ -96,7 +121,9 @@ export default function MenuPrincipal() {
             <Hr style={{marginBottom:"20px"}} />
             <h1 style={{textAlign:"left"}} >Agendamentos do Dia</h1>
             <ContainerData>
-              <DataSchedulesCell date={data} displayDate={false} razao={"Energisa"} valor={75}/>
+              {agendamentos.map((obj: {[x: string]: any; data: string; valor: number; discriminacao: string}) => (
+                <DataSchedulesCell date={new Date(obj.data)} displayDate={false} displayBorder={false} razao={obj.discriminacao} valor={obj.valor}/>
+              ))}
             </ContainerData>
           </NormalContainer>
         </DoubleContainer>
