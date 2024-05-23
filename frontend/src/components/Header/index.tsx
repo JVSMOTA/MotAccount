@@ -29,7 +29,7 @@ export default function Header() {
       const parts = location.pathname.split('/');
       const id = parts[2]; // Assumindo que o ID está na terceira posição
 
-      if (location.pathname.endsWith('/apurados')) {
+      if (location.pathname.endsWith('/apurados') || location.pathname.endsWith('/agendamentos') || location.pathname.endsWith('/despesas')) {
         return (
           <>
             <LinkComponent to="/menuLojas">
