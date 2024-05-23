@@ -23,7 +23,8 @@ public class ApuradoModel {
     private LojaModel loja;
 
     private LocalDate data;
-    private BigDecimal valor;
+    private BigDecimal apuradoFisico;
+    private BigDecimal apuradoCartao;
 
 
 }

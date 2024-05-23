@@ -109,8 +109,8 @@ export default function MenuApurados() {
           <NormalContainer>
             <h1 style={{textAlign:"left"}} >Apurados do Mês</h1>
             <ContainerData>
-              {apurados.map((obj: {[x: string]: any; data: string; valor: number }) => (
-                <DataAmmountCell date={new Date(obj.data)} fisico={obj.valor} cartao={0} displayDate={true}/>
+              {apurados.map((obj: {[x: string]: any; data: string; apuradoFisico: number; apuradoCartao: number }) => (
+                <DataAmmountCell date={new Date(obj.data)} fisico={obj.apuradoFisico} cartao={obj.apuradoCartao} displayDate={true}/>
               ))}
             </ContainerData>
           </NormalContainer>
