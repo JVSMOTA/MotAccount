@@ -51,5 +51,10 @@ export const ProfileContainer = styled.div`
 
 export const LightProfileContainer = styled.div`
   display: flex;
-  flex: 0 0 49%;
+  min-width: 49%;
+
+  @media (max-width: 1158px) {
+    width: 100%;
+  }
+
 `;
