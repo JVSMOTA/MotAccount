@@ -44,7 +44,7 @@ export default function MenuApurados() {
     }
 
     // Se chegou aqui, há um token, então faça a requisição necessária
-    fetch(`http://localhost:8080/lojas/${id}`, {
+    fetch(`http://192.168.5.160:8080/lojas/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export default function MenuApurados() {
     }
 
     // Se chegou aqui, há um token, então faça a requisição necessária
-    fetch(`http://localhost:8080/lojas/${id}/apurados`, {
+    fetch(`http://192.168.5.160:8080/lojas/${id}/apurados`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

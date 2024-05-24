@@ -26,7 +26,7 @@ public class DespesaController {
         this.despesaService = despesaService;
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PostMapping("/lojas/{idLoja}/despesas")
     public ResponseEntity<?> createDespesa(@PathVariable(value = "idLoja") UUID idLoja, @Valid @RequestBody DespesaRecordDto despesaRecordDto) {
         try {
@@ -36,7 +36,7 @@ public class DespesaController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping("/lojas/{idLoja}/despesas")
     public ResponseEntity<?> getAllDespesas(@PathVariable(value = "idLoja") UUID idLoja) {
         try {
@@ -46,7 +46,7 @@ public class DespesaController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping("/lojas/{idLoja}/despesas/{idDespesa}")
     public ResponseEntity<Object> getOneDespesa(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idDespesa") UUID idDespesa) {
         try {
@@ -56,7 +56,7 @@ public class DespesaController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PutMapping("/lojas/{idLoja}/despesas/{idDespesa}")
     public ResponseEntity<Object> updateLoja(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idDespesa") UUID idDespesa, @Valid @RequestBody DespesaRecordDto despesaRecordDto) {
         try {
@@ -66,7 +66,7 @@ public class DespesaController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @DeleteMapping("/lojas/{idLoja}/despesas/{idDespesa}")
     public ResponseEntity<?> deleteLoja(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idDespesa") UUID idDespesa) {
         try {

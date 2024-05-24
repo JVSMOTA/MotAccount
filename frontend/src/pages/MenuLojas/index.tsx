@@ -19,7 +19,7 @@ export default function MenuLojas() {
     }
 
     // Se chegou aqui, há um token, então faça a requisição às lojas
-    fetch('http://localhost:8080/lojas', {
+    fetch('http://192.168.5.160:8080/lojas', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export default function MenuLojas() {
           {lojas.map((obj: {[x: string]: any; nome: string | undefined }) => (
           <div key={obj.nome} style={{width:'100%'}}>
             <Link style={{borderRadius:'23px'}}
-                    to={`/menuPrincipal/${Object.values(obj.links[0].href).join("").split(", ")[0].split("http://localhost:8080/lojas/")[1]}`}
+                    to={`/menuPrincipal/${Object.values(obj.links[0].href).join("").split(", ")[0].split("http://192.168.5.160:8080/lojas/")[1]}`}
                 >
               <ButtonForm placeholder={obj.nome}/>
             </Link>

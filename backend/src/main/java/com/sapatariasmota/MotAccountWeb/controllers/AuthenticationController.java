@@ -34,7 +34,7 @@ public class AuthenticationController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     public ResponseEntity<?> login(@RequestBody @Valid AuthenticationDto data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
         var auth = this.authenticationManager.authenticate(usernamePassword);

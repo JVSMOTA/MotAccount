@@ -24,7 +24,7 @@ export default function Login() {
 	const handleForm = async (event: { preventDefault: () => any; }) => {
 		try {
 		  event.preventDefault();
-		  const response = await fetch('http://localhost:8080/auth/login', {
+		  const response = await fetch('http://192.168.5.160:8080/auth/login', {
 			method: 'POST',
 			body: JSON.stringify(loginFormData),
 			headers: {

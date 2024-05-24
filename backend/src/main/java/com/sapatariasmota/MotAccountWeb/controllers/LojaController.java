@@ -26,13 +26,13 @@ public class LojaController {
         this.lojaService = lojaService;
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PostMapping
     public ResponseEntity<LojaModel> createLoja(@Valid @RequestBody LojaRecordDto lojaRecordDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(lojaService.createLoja(lojaRecordDto));
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneLoja(@PathVariable(value = "id") UUID id) {
         try {
@@ -42,13 +42,13 @@ public class LojaController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping
     public ResponseEntity<List<LojaModel>> getAllLojas() {
         return ResponseEntity.status(HttpStatus.OK).body(lojaService.getAllLojas());
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateLoja(@PathVariable(value = "id") UUID id, @Valid @RequestBody LojaRecordDto lojaRecordDto) {
         try {
@@ -58,7 +58,7 @@ public class LojaController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteLoja(@PathVariable(value = "id") UUID id) {
         try {

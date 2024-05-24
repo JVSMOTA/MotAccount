@@ -26,13 +26,13 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PostMapping
     public ResponseEntity<UsuarioModel> createUsuario(@Valid @RequestBody UsuarioRecordDto usuarioRecordDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.createUsuario(usuarioRecordDto));
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneUsuario(@PathVariable(value = "id") UUID id) {
         try {
@@ -42,13 +42,13 @@ public class UsuarioController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping
     public ResponseEntity<List<UsuarioModel>> getAllUsuarios() {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getAllUsuarios());
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") UUID id, @Valid @RequestBody UsuarioRecordDto usuarioRecordDto) {
         try {
@@ -58,7 +58,7 @@ public class UsuarioController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") UUID id) {
         try {
