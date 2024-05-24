@@ -109,7 +109,11 @@ export default function MenuApurados() {
               >
               <ButtonExpenses placeholder="Agendamentos" />
             </Link>
-            <ButtonSchedules placeholder="Despesas" />
+            <Link style={{borderRadius:'23px', width:'100%'}} 
+              to={`/menuPrincipal/${[id]}/despesas`}
+              >
+              <ButtonSchedules placeholder="Despesas" />
+            </Link>
           </LightContainer>
           <NormalContainer>
             <h1 style={{textAlign:"left"}} >Agendamentos do Mês</h1>

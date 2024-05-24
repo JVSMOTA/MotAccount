@@ -10,6 +10,7 @@ import ButtonAmmount from "../../components/ButtonAmmount";
 import ButtonExpenses from "../../components/ButtonExpenses";
 import ButtonSchedules from "../../components/ButtonSchedules";
 import Header from "../../components/Header";
+import DataSchedulesCell from "../../components/DataSchedulesCell";
 import DataAmmountCell from "../../components/DataAmmountCell";
 
 interface Loja {
@@ -20,7 +21,7 @@ interface Loja {
 
 export default function MenuApurados() {
   const [loja, setLoja] = useState<Loja>()
-  const [apurados, setApurados] = useState([]);
+  const [despesas, setDespesas] = useState([]);
   const navigate = useNavigate()
   const { id } = useParams()
 
@@ -68,7 +69,7 @@ export default function MenuApurados() {
     }
 
     // Se chegou aqui, há um token, então faça a requisição necessária
-    fetch(`http://localhost:8080/lojas/${id}/apurados`, {
+    fetch(`http://localhost:8080/lojas/${id}/despesas`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -76,9 +77,9 @@ export default function MenuApurados() {
       },
     })
     .then(retorno => retorno.json())
-    .then(retorno_convertido => setApurados(retorno_convertido))
+    .then(retorno_convertido => setDespesas(retorno_convertido))
     .catch(error => {
-      console.error("Erro ao obter apurados:", error);
+      console.error("Erro ao obter agendamentos:", error);
     })
   }, [id, navigate])
 
@@ -115,10 +116,10 @@ export default function MenuApurados() {
             </Link>
           </LightContainer>
           <NormalContainer>
-            <h1 style={{textAlign:"left"}} >Apurados do Mês</h1>
+            <h1 style={{textAlign:"left"}} >Despesas do Mês</h1>
             <ContainerData>
-              {apurados.map((obj: {[x: string]: any; data: string; apuradoFisico: number; apuradoCartao: number }) => (
-                <DataAmmountCell date={new Date(obj.data)} fisico={obj.apuradoFisico} cartao={obj.apuradoCartao} displayDate={true}/>
+              {despesas.map((obj: {[x: string]: any; data: string; valor: number; discriminacao: string}) => (
+                <DataSchedulesCell date={new Date(obj.data)} displayDate={true} displayBorder={true} razao={obj.discriminacao} valor={obj.valor}/>
               ))}
             </ContainerData>
           </NormalContainer>
