@@ -10,12 +10,12 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "TB_AGENDAMENTOS")
-public class AgendamentoModel {
+@Table(name = "TB_DESPESAS")
+public class DespesaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idAgendamento;
+    private UUID idDespesa;
 
     @ManyToOne
     @JsonIgnore
