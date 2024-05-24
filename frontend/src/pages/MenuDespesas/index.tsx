@@ -4,15 +4,14 @@ import LightContainer from "../../components/LightContainer";
 import NormalContainer from "../../components/NormalContainer";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { ContainerData, Hr, LightProfileContainer, ProfileContainer } from "./style";
+import { ContainerData, Hr} from "./style";
 import ButtonForm from "../../components/ButtonForm";
 import ButtonAmmount from "../../components/ButtonAmmount";
 import ButtonExpenses from "../../components/ButtonExpenses";
 import ButtonSchedules from "../../components/ButtonSchedules";
 import Header from "../../components/Header";
-import InputForm from "../../components/InputForm";
-import DataAmmountCell from "../../components/DataAmmountCell";
 import DataSchedulesCell from "../../components/DataSchedulesCell";
+import DataAmmountCell from "../../components/DataAmmountCell";
 
 interface Loja {
   nome: string;
@@ -20,9 +19,9 @@ interface Loja {
   endereco: string;
 }
 
-export default function MenuPrincipal() {
+export default function MenuApurados() {
   const [loja, setLoja] = useState<Loja>()
-  const [agendamentos, setAgendamentos] = useState([]);
+  const [despesas, setDespesas] = useState([]);
   const navigate = useNavigate()
   const { id } = useParams()
 
@@ -60,6 +59,7 @@ export default function MenuPrincipal() {
     })
   }, [id, navigate])
 
+
   useEffect(() => {
     const token = Cookies.get('token')
 
@@ -69,7 +69,7 @@ export default function MenuPrincipal() {
     }
 
     // Se chegou aqui, há um token, então faça a requisição necessária
-    fetch(`http://192.168.5.160:8080/lojas/${id}/agendamentos`, {
+    fetch(`http://192.168.5.160:8080/lojas/${id}/despesas`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function MenuPrincipal() {
       },
     })
     .then(retorno => retorno.json())
-    .then(retorno_convertido => setAgendamentos(retorno_convertido))
+    .then(retorno_convertido => setDespesas(retorno_convertido))
     .catch(error => {
       console.error("Erro ao obter agendamentos:", error);
     })
@@ -98,7 +98,7 @@ export default function MenuPrincipal() {
             </div>
             <DataAmmountCell date={data} fisico={0} cartao={0} displayDate={false}/>
             <ButtonForm placeholder="Alterar apurado do dia"></ButtonForm>
-
+            
             <Link style={{borderRadius:'23px', width:'100%'}} 
               to={`/menuPrincipal/${[id]}/apurados`}
               >
@@ -109,23 +109,17 @@ export default function MenuPrincipal() {
               >
               <ButtonExpenses placeholder="Agendamentos" />
             </Link>
-            <ButtonSchedules placeholder="Despesas" />
+            <Link style={{borderRadius:'23px', width:'100%'}} 
+              to={`/menuPrincipal/${[id]}/despesas`}
+              >
+              <ButtonSchedules placeholder="Despesas" />
+            </Link>
           </LightContainer>
           <NormalContainer>
-            <ProfileContainer>
-              <LightProfileContainer>
-                <InputForm placeHolderContainer={"Nome"} placeholder={loja?.nome} disabled></InputForm>
-              </LightProfileContainer>
-              <LightProfileContainer>
-                <InputForm placeHolderContainer={"Tipo"} placeholder={loja?.tipo} disabled></InputForm>
-              </LightProfileContainer>
-              <InputForm placeHolderContainer={"Endereço"} placeholder={loja?.endereco} disabled></InputForm>
-            </ProfileContainer>
-            <Hr style={{marginBottom:"20px"}} />
-            <h1 style={{textAlign:"left"}} >Agendamentos do Dia</h1>
+            <h1 style={{textAlign:"left"}} >Despesas do Mês</h1>
             <ContainerData>
-              {agendamentos.map((obj: {[x: string]: any; data: string; valor: number; discriminacao: string}) => (
-                <DataSchedulesCell date={new Date(obj.data)} displayDate={false} displayBorder={false} razao={obj.discriminacao} valor={obj.valor}/>
+              {despesas.map((obj: {[x: string]: any; data: string; valor: number; discriminacao: string}) => (
+                <DataSchedulesCell date={new Date(obj.data)} displayDate={true} displayBorder={true} razao={obj.discriminacao} valor={obj.valor}/>
               ))}
             </ContainerData>
           </NormalContainer>

@@ -45,7 +45,7 @@ export default function MenuApurados() {
     }
 
     // Se chegou aqui, há um token, então faça a requisição necessária
-    fetch(`http://localhost:8080/lojas/${id}`, {
+    fetch(`http://192.168.5.160:8080/lojas/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export default function MenuApurados() {
     }
 
     // Se chegou aqui, há um token, então faça a requisição necessária
-    fetch(`http://localhost:8080/lojas/${id}/agendamentos`, {
+    fetch(`http://192.168.5.160:8080/lojas/${id}/agendamentos`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -109,7 +109,11 @@ export default function MenuApurados() {
               >
               <ButtonExpenses placeholder="Agendamentos" />
             </Link>
-            <ButtonSchedules placeholder="Despesas" />
+            <Link style={{borderRadius:'23px', width:'100%'}} 
+              to={`/menuPrincipal/${[id]}/despesas`}
+              >
+              <ButtonSchedules placeholder="Despesas" />
+            </Link>
           </LightContainer>
           <NormalContainer>
             <h1 style={{textAlign:"left"}} >Agendamentos do Mês</h1>

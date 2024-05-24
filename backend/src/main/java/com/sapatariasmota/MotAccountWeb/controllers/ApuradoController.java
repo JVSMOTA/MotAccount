@@ -26,7 +26,7 @@ public class ApuradoController {
         this.apuradoService = apuradoService;
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PostMapping("/lojas/{idLoja}/apurados")
     public ResponseEntity<?> createApurado(@PathVariable(value = "idLoja") UUID idLoja, @Valid @RequestBody ApuradoRecordDto apuradoRecordDto) {
         try {
@@ -36,7 +36,7 @@ public class ApuradoController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping("/lojas/{idLoja}/apurados")
     public ResponseEntity<?> getAllApurados(@PathVariable(value = "idLoja") UUID idLoja) {
         try {
@@ -46,7 +46,7 @@ public class ApuradoController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping("/lojas/{idLoja}/apurados/{idApurado}")
     public ResponseEntity<Object> getOneApurado(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idApurado") UUID idApurado) {
         try {
@@ -56,7 +56,7 @@ public class ApuradoController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PutMapping("/lojas/{idLoja}/apurados/{idApurado}")
     public ResponseEntity<Object> updateLoja(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idApurado") UUID idApurado, @Valid @RequestBody ApuradoRecordDto apuradoRecordDto) {
         try {
@@ -66,7 +66,7 @@ public class ApuradoController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @DeleteMapping("/lojas/{idLoja}/apurados/{idApurado}")
     public ResponseEntity<?> deleteLoja(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idApurado") UUID idApurado) {
         try {

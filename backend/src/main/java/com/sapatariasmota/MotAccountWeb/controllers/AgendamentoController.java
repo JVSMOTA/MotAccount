@@ -26,7 +26,7 @@ public class AgendamentoController {
         this.agendamentoService = agendamentoService;
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PostMapping("/lojas/{idLoja}/agendamentos")
     public ResponseEntity<?> createAgendamento(@PathVariable(value = "idLoja") UUID idLoja, @Valid @RequestBody AgendamentoRecordDto agendamentoRecordDto) {
         try {
@@ -36,7 +36,7 @@ public class AgendamentoController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping("/lojas/{idLoja}/agendamentos")
     public ResponseEntity<?> getAllAgendamentos(@PathVariable(value = "idLoja") UUID idLoja) {
         try {
@@ -46,7 +46,7 @@ public class AgendamentoController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @GetMapping("/lojas/{idLoja}/agendamentos/{idAgendamento}")
     public ResponseEntity<Object> getOneAgendamento(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idAgendamento") UUID idAgendamento) {
         try {
@@ -56,7 +56,7 @@ public class AgendamentoController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @PutMapping("/lojas/{idLoja}/agendamentos/{idAgendamento}")
     public ResponseEntity<Object> updateLoja(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idAgendamento") UUID idAgendamento, @Valid @RequestBody AgendamentoRecordDto agendamentoRecordDto) {
         try {
@@ -66,7 +66,7 @@ public class AgendamentoController {
         }
     }
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://192.168.5.160:5173")
     @DeleteMapping("/lojas/{idLoja}/agendamentos/{idAgendamento}")
     public ResponseEntity<?> deleteLoja(@PathVariable(value = "idLoja") UUID idLoja, @PathVariable(value = "idAgendamento") UUID idAgendamento) {
         try {

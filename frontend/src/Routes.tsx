@@ -8,6 +8,7 @@ import MenuLojas from "./pages/MenuLojas"
 import MenuPrincipal from "../src/pages/MenuPrincipal"
 import MenuApurados from "./pages/MenuApurados"
 import MenuAgendamentos from "./pages/MenuAgendamentos"
+import MenuDespesas from "./pages/MenuDespesas"
 
 export default function AppRoutes() {
 	return (
@@ -21,6 +22,7 @@ export default function AppRoutes() {
 				<Route path="/menuPrincipal/:id" element={<MenuPrincipal />} />
 				<Route path="/menuPrincipal/:id/apurados" element={<MenuApurados />} />
 				<Route path="/menuPrincipal/:id/agendamentos" element={<MenuAgendamentos />} />
+				<Route path="/menuPrincipal/:id/despesas" element={<MenuDespesas />} />
 			</Routes>
 		</BrowserRouter>
 	)

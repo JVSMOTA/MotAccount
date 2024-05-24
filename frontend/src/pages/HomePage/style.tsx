@@ -1,4 +1,4 @@
-
+import logo from '../../assets/logo.svg?react';
 import styled from 'styled-components'
 
 export const Hr = styled.hr`
@@ -13,4 +13,9 @@ export const Hr = styled.hr`
 export const Div = styled.div`
   width: 100%;
   align-items: center;
+`;
+
+export const Logo = styled(logo)`
+  width: auto;
+  height: 12rem;
 `;
