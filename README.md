@@ -1,8 +1,8 @@
-# MotAccountWeb
+# MotAccount
 
 <div align="right">
   
-[![HitCount](https://hits.dwyl.com/JVSMOTA/MotAccountWeb.svg?style=flat-square)](http://hits.dwyl.com/JVSMOTA/MotAccountWeb)
+[![Hits](https://hits.sh/github.com/JVSMOTA/MotAccount.svg)](https://hits.sh/github.com/JVSMOTA/MotAccount/)
 
 </div>
 
