@@ -1,11 +1,11 @@
 import ButtonForm from "../ButtonForm"
 import InputForm from "../InputForm"
-import { Container } from "./styles"
+// import { Container } from "./styles"
 
 export default function LoginForm({ updateFormData }: any) {
 
   return (
-    <Container>
+    <>
       <h1>Login da MotAccount</h1>
       <InputForm 
         placeHolderContainer="Email"
@@ -22,6 +22,6 @@ export default function LoginForm({ updateFormData }: any) {
         onChange={updateFormData}
       />
       <ButtonForm placeholder="Entrar" type="submit"/>
-    </Container>
+    </>
   )
 }
