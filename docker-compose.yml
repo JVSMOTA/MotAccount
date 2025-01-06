@@ -4,6 +4,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    container_name: motaccount-back
     ports:
       - "8080:8080"
     environment:
@@ -17,14 +18,15 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    container_name: motaccount-front
     ports:
       - "3000:80"
 
   db:
     image: postgres:15
-    container_name: postgres_container
+    container_name: motaccount-db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       POSTGRES_DB: motaccountweb-api
       POSTGRES_USER: postgres
